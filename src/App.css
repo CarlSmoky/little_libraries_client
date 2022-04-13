@@ -1,0 +1,118 @@
+:root {
+  --dark: #B8B8AA;
+  --mid: #CFC0BD;
+  --light: #f0f7f4;
+}
+
+.mid-color {
+  background-color: var(--mid);
+}
+
+.light-color {
+  background-color: var(--light);
+}
+
+/* top level */
+.App {
+  text-align: center;
+}
+
+.main-container {
+  margin-top: 0.13rem;
+}
+
+body {
+  /* this is to overide bootstrap and fill the space between the footer and the content */
+  background-color: var(--dark)!important; 
+}
+
+.footer {
+  background-color: var(--dark);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.footer p {
+  color: var(--light);
+}
+
+
+/* form */
+
+.form-wrapper {
+  margin: auto;
+  width: 80%;
+}
+
+.form-checkbox {
+  text-align: left;
+}
+
+.input-field {
+  display: block;
+}
+
+.search {
+  margin-top: 2.6rem;
+}
+
+.locate {
+  margin-top: 3rem;
+}
+
+/* library details */
+
+.libraryContainer {
+  display: flex;
+}
+
+.libraryDetails {
+  background-color: var(--dark);
+  width: 80%;
+}
+
+.libraryDetails img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10%;
+  margin: 20px;
+}
+
+.libraryDetails p {
+  color: var(--light);
+}
+
+/* fulll screen */
+@media screen and (min-width: 501px) {
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+  }
+}
+
+
+
+/* compact screen */
+@media screen and (max-width: 500px) {
+
+  .libraryContainer {
+    flex-direction: column;
+  }
+
+  .libraryDetails {
+    width: 100%;
+  }
+
+  .libraryDetails img {
+    width: 90%;
+  }
+
+  #navbar-title {
+    font-size: 12pt;
+  }
+}
