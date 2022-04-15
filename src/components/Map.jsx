@@ -69,7 +69,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
       });
     } else {
       // if either id is missing or markers is still empty:
-      setLocalMarkers(markers);
+      setLocalMarkers(markers.filter(m => m.registered));
     }
   }
 

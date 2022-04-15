@@ -51,3 +51,20 @@ h1 {
   width: 30px;
   cursor: pointer;
 }
+
+/* .gm-style .gm-style-iw-c classes are undocumented, so this is potentially unstable */
+.gm-style .gm-style-iw-c {
+   padding: 20px !important;
+    max-width: 500px !important;
+    max-height: 400px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-100%);
+    border-radius: 8px;
+    box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+}
