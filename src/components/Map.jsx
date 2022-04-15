@@ -42,6 +42,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
   const [selected, setSelected] = useState(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState();
   const [mapContainerStyle, setMapContainerStyle] = useState(mapStyle);
+  const originalMarkers = {...markers};
 
 
   const markerById = (id) => {
@@ -142,6 +143,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
             onCloseClick={() => {
               setSelected(null);
               setSelectedImageUrl(null);
+              setLocalMarkers(markers.filter(m => m.registered));
             }}
           >
             <div>
