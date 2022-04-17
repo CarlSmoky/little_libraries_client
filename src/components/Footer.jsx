@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Footer = (props) => {
   return (
     <div className="footer">
-      <p>I'm a footer</p>
+      <p>Little library K&J</p>
     </div>
   )
 }
