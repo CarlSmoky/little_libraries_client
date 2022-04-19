@@ -24,15 +24,32 @@ const LibraryDetail = ({ libraryInfo }) => {
       })
   }
   useEffect(() => {
-    const endpoints = {
-      "VISITS": `api/visits/?libraryId=${libraryId}`
+    if (!token) {
+      const endpoints = {
+        "VISITS": `api/visits/library/${libraryId}`
+      }
+      axios.get(endpoints.VISITS)
+        .then(response => {
+          const { count} = response.data;
+          setCount(count);
+        });
+    } else {
+      const endpoints = {
+        "VISITS": `api/visits/library/`
+      }
+      axios.post(endpoints.VISITS, { libraryId }, {
+        headers: {
+          "x-access-token": token,
+        }
+      })
+        .then(response => {
+          const { count, countByUser } = response.data;
+          console.log(count);
+          setCount(count);
+          setCountByUser(countByUser);
+        });
     }
-    axios.get(endpoints.VISITS)
-      .then(response => {
-        const { count } = response.data;
-        setCount(count);
-      });
-  }, [libraryId])
+  }, [libraryId, token])
 
   const handleClick = () => {
     const endpoints = {
