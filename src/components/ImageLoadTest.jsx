@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { resizeFile, dataURIToBlob } from './../resizeFile.js';
 import firebaseSignIn from '../FirebaseAuth';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function ImageLoadTest({libraryId}) {
   const navigate = useNavigate();
@@ -13,12 +14,29 @@ export default function ImageLoadTest({libraryId}) {
   const storage = getStorage(firebaseApp);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  const addVisitCount = () => {
+    const endpoints = {
+      "RECORD_VISITS": `api/visits/`
+    }
+
+    axios.post(endpoints.RECORD_VISITS, { libraryId }, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      }
+    })
+      .then(response => {
+        const { time, count, countByUser } = response.data;
+        console.log("logged count");
+      });
+  }
+
   const uploadImageToFirebase = () => {
     resizeFile(selectedImage)
       .then(resized => {
         const newFile = dataURIToBlob(resized);
         uploadBytes(storageRef, newFile).then((snapshot) => {
           console.log('Uploaded a blob or file!');
+          addVisitCount();
           navigate(`/library/${libraryId}`);
         });
       })
