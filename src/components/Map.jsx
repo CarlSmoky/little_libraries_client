@@ -148,7 +148,12 @@ const Map = ({ id, showSearch, mapStyle }) => {
           >
             <div>
             {selected.registered &&
-              <><h3>{`Little Library ${selected.name}`}</h3><img src={selectedImageUrl} alt="photo of library" width='100' height='100' /><Link to={`/library/${selected.id}`}>Library detail</Link></>
+              <>
+              <h3>{`${selected.name}`}</h3>
+              <Link to={`/library/${selected.id}`}>
+                <img className="photo" src={selectedImageUrl} alt="photo of library" width='100' height='100' />
+              </Link>
+              </>
             }
             {!selected.registered &&
             <Link
