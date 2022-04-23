@@ -48,10 +48,11 @@ export default function TopNav() {
                 {token && <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>}
                 {user && <Nav.Link >{user.firstName}</Nav.Link>}
                 <NavDropdown title="More" id="offcanvasNavbarDropdown">
-                  <Nav.Link as={Link} to="/aboutus">
-                    <NavDropdown.Item >
+                  <NavDropdown.Item>
+                    <Nav.Link as={Link} to="/aboutus">
                       About Us
-                    </NavDropdown.Item></Nav.Link>
+                    </Nav.Link>
+                  </NavDropdown.Item>
                   <NavDropdown.Item href="#action4">Dashboard</NavDropdown.Item>
                   <NavDropdown.Divider />
                   {/* <NavDropdown.Item href="#action5">
