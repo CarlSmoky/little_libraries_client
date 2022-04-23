@@ -10,6 +10,7 @@ import Login from './components/Login';
 import ImageLoadTest from './components/ImageLoadTest';
 import LibraryForm from './components/LibraryForm';
 import LibraryPage from './pages/LibraryPage';
+import AboutUs from './components/AboutUs';
 
 export default function App() {
   console.log("TEST ENV", process.env.TEST);
@@ -24,6 +25,7 @@ export default function App() {
         <Route path ="/upload" element={<ImageLoadTest />}/>
         <Route path ="/libraryForm" element={<LibraryForm />}/>
         <Route path ="/library/:id" element={<LibraryPage />}/>
+        <Route path ="/aboutus" element={<AboutUs />}/>
       </Routes>
       <Footer />
     </BrowserRouter>
