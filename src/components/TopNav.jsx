@@ -19,12 +19,14 @@ export default function TopNav() {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("name");
     firebaseSignOut();
     resetUserInfo();
     navigate("/");
   };
 
   const token = localStorage.getItem("token");
+  const name = localStorage.getItem("name");
 
   return (
     <div>
@@ -46,7 +48,7 @@ export default function TopNav() {
                 {!token && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
                 {!token && <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>}
                 {token && <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>}
-                {user && <Nav.Link >{user.firstName}</Nav.Link>}
+                {name && <Nav.Link >{name}</Nav.Link>}
                 <NavDropdown title="More" id="offcanvasNavbarDropdown">
                   <NavDropdown.Item>
                     <Nav.Link as={Link} to="/aboutus">

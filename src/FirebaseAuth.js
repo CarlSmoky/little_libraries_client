@@ -4,14 +4,13 @@ const firebaseSignIn = (firebaseToken) => {
   const auth = getAuth();
   signInWithCustomToken(auth, firebaseToken)
     .then((userCredential) => {
-      // Signed in
       const user = userCredential.user;
-      // console.log("success", user);
+      console.log("firebase logged in successfully", user);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("failed", errorMessage);
+      console.log("firebase login failed", errorMessage);
     });
 }
 

@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap/';
 import axios from 'axios';
 import { authContext } from '../providers/AuthProvider';
-import firebaseSignIn from '../FirebaseAuth';
 import { Auth, getAuth } from 'firebase/auth';
+import { postLoginProcedure } from '../helpers/login-helpers'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,13 +33,9 @@ const Login = () => {
 
     axios.post(endpoints.LOGIN, authInput)
       .then(response => {
-        // console.log("Our Response:", response.data);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem("token", response.data.token);
-        }
-        const { id, firstName, lastName, email, auth, firebaseToken } = response.data;
+        const { id, firstName, lastName, email, auth, firebaseToken, token } = response.data;
+        postLoginProcedure(token, firstName, firebaseToken);
         setUserInfo(id, firstName, lastName, email, auth);
-        firebaseSignIn(firebaseToken);
         navigate('/')
       });
   }
@@ -65,7 +61,7 @@ const Login = () => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  className="form-control form-control-lg" 
+                  className="form-control form-control-lg"
                   type="password"
                   placeholder="Password"
                   value={password}
