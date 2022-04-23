@@ -34,10 +34,11 @@ const Login = () => {
     axios.post(endpoints.LOGIN, authInput)
       .then(response => {
         // console.log("Our Response:", response.data);
+        const { id, firstName, lastName, email, auth, firebaseToken } = response.data;
         if (typeof window !== 'undefined') {
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("name", firstName);
         }
-        const { id, firstName, lastName, email, auth, firebaseToken } = response.data;
         setUserInfo(id, firstName, lastName, email, auth);
         firebaseSignIn(firebaseToken);
         navigate('/')
@@ -65,7 +66,7 @@ const Login = () => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  className="form-control form-control-lg" 
+                  className="form-control form-control-lg"
                   type="password"
                   placeholder="Password"
                   value={password}
