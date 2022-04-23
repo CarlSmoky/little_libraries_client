@@ -50,11 +50,12 @@ export default function SignUp() {
       .then(response => {
         // console.log("Our Response:", response.data);
         console.log("I'm the callback from the put call");
+
+        const { id, firstName, lastName, email, auth } = response.data;
         if (typeof window !== 'undefined') {
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("name", name);
         }
-        const { id, firstName, lastName, email, auth } = response.data;
-        // console.log("sign up response", response)
         setUserInfo(id, firstName, lastName, email, auth);
         navigate('/')
       })
