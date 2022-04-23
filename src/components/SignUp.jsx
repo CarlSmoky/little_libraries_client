@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { authContext } from '../providers/AuthProvider';
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap/';
+import { postLoginProcedure } from '../helpers/login-helpers';
 
 
 export default function SignUp() {
@@ -48,14 +49,8 @@ export default function SignUp() {
 
     axios.post(endpoints.SIGNUP, newUser)
       .then(response => {
-        // console.log("Our Response:", response.data);
-        console.log("I'm the callback from the put call");
-
-        const { id, firstName, lastName, email, auth } = response.data;
-        if (typeof window !== 'undefined') {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("name", name);
-        }
+        const { id, firstName, lastName, email, auth, firebaseToken, token } = response.data;
+        postLoginProcedure(token, firstName, firebaseToken);
         setUserInfo(id, firstName, lastName, email, auth);
         navigate('/')
       })

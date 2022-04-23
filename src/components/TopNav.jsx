@@ -19,6 +19,7 @@ export default function TopNav() {
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("name");
     firebaseSignOut();
     resetUserInfo();
     navigate("/");
