@@ -1,4 +1,3 @@
-// import { useContext } from "react";
 import firebaseSignIn from '../FirebaseAuth';
 
 const postLoginProcedure = (token, firstName, firebaseToken) => {

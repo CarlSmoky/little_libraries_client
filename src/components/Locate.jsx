@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Locate = ({ panTo }) => {
+const Locate = ({ panTo, autoDropMarker }) => {
   return (
     <button
       className="locate"
       onClick={() => {
+        console.log("LOCATE");
         navigator.geolocation.getCurrentPosition(
           (position) => {
             console.log(position);
@@ -12,8 +13,12 @@ const Locate = ({ panTo }) => {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             });
+            autoDropMarker({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            })
           },
-          () => null
+          () => {console.log("geolocation error")}
         );
       }}
     >
