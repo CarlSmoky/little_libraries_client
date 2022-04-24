@@ -100,6 +100,19 @@ const Map = ({ id, showSearch, mapStyle }) => {
     mapRef.current.setZoom(17);
   }, []);
 
+  // todo: move to helper file
+  const hasCloseNeighbour = (existingMarkers, newMarker) => {
+    // const threshold = 0.00001 // false for here
+    // const threshold = 0.00005 // false
+    // const threshold = 0.00008 // false
+    // const threshold = 0.0001  // true for here
+    const threshold = 0.00008  //
+    const closeLat = existingMarkers.filter(m => Math.abs(newMarker.lat - m.lat) < threshold);
+    const closeLatAndLong = closeLat.filter(m => Math.abs(newMarker.lng - m.lng) < threshold);
+    return closeLatAndLong.length > 0;
+  }
+
+  // todo: refactor & combine with onMapClick
   const autoDropMarker = ({ lat, lng }) => {
     let newMarker = {
       lat: lat,
@@ -107,6 +120,11 @@ const Map = ({ id, showSearch, mapStyle }) => {
       time: new Date(),
       registered: false
     };
+
+    const hasNeighbour = hasCloseNeighbour(markers, newMarker);
+    console.log("has neighbour", hasNeighbour);
+
+    if (hasNeighbour) { return; }
 
     setMarkers((current) => [
       ...current,
