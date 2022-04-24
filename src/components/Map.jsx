@@ -44,7 +44,6 @@ const Map = ({ id, showSearch, mapStyle }) => {
   const [mapContainerStyle, setMapContainerStyle] = useState(mapStyle);
   const originalMarkers = {...markers};
 
-
   const markerById = (id) => {
     const result = markers.filter(e => e.id === Number(id));
     return result;
@@ -98,8 +97,42 @@ const Map = ({ id, showSearch, mapStyle }) => {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(17);
   }, []);
+
+  // todo: move to helper file
+  const hasCloseNeighbour = (existingMarkers, newMarker) => {
+    // const threshold = 0.00001 // false for here
+    // const threshold = 0.00005 // false
+    // const threshold = 0.00008 // false
+    // const threshold = 0.0001  // true for here
+    const threshold = 0.00008  //
+    const closeLat = existingMarkers.filter(m => Math.abs(newMarker.lat - m.lat) < threshold);
+    const closeLatAndLong = closeLat.filter(m => Math.abs(newMarker.lng - m.lng) < threshold);
+    return closeLatAndLong.length > 0;
+  }
+
+  // todo: refactor & combine with onMapClick
+  const autoDropMarker = ({ lat, lng }) => {
+    let newMarker = {
+      lat: lat,
+      lng: lng,
+      time: new Date(),
+      registered: false
+    };
+
+    const hasNeighbour = hasCloseNeighbour(markers, newMarker);
+    console.log("has neighbour", hasNeighbour);
+
+    if (hasNeighbour) { return; }
+
+    setMarkers((current) => [
+      ...current,
+      newMarker,
+    ]);
+    setSelected(newMarker);
+  }
+
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -107,7 +140,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
   return (
     <>
       {showSearch && <Search panTo={panTo} />}
-      {showSearch && <Locate panTo={panTo} />}
+      {showSearch && <Locate panTo={panTo} autoDropMarker={autoDropMarker} />}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}
@@ -120,12 +153,6 @@ const Map = ({ id, showSearch, mapStyle }) => {
           <Marker
             key={`${marker.lat}-${marker.lng}`}
             position={{ lat: marker.lat, lng: marker.lng }}
-            // icon={{
-            //   url: '/books.png',
-            //   scaledSize: new window.google.maps.Size(24, 24),
-            //   origin: new window.google.maps.Point(0, 0),
-            //   anchor: new window.google.maps.Point(15, 15),
-            // }}
             onClick={() => {
               setSelected(marker);
               const storage = getStorage();
