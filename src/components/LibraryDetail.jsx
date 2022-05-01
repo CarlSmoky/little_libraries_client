@@ -73,7 +73,7 @@ const LibraryDetail = ({ libraryInfo }) => {
   }
 
   function formatCountableNoun(noun, count) {
-    return count === 1 ? noun : noun + "s";
+    return count === '1' ? noun : noun + "s";
   }
 
   return (
