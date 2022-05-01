@@ -11,8 +11,8 @@ const LibraryDetail = ({ libraryInfo }) => {
   const storage = getStorage();
   const libraryId = libraryInfo.id;
   const [count, setCount] = useState("");
-  const [createdAt, setCreatedAt] = useState("");
   const [countByUser, setCountByUser] = useState("");
+  const [lastVisitByUser, setLastVisitByUser] = useState("");
   const token = localStorage.getItem("token");
 
   if (libraryInfo.id) {
@@ -26,6 +26,7 @@ const LibraryDetail = ({ libraryInfo }) => {
   }
   useEffect(() => {
     if (!token) {
+      //When user not logged in
       const endpoints = {
         "VISITS": `api/visits/library/${libraryId}`
       }
@@ -35,6 +36,7 @@ const LibraryDetail = ({ libraryInfo }) => {
           setCount(count);
         });
     } else {
+      //When user logged in
       const endpoints = {
         "VISITS": `api/visits/library/`
       }
@@ -44,13 +46,13 @@ const LibraryDetail = ({ libraryInfo }) => {
         }
       })
         .then(response => {
-          const { count, countByUser } = response.data;
-          console.log(count);
+          const { count, countByUser, lastVisitByUser } = response.data;
           setCount(count);
           setCountByUser(countByUser);
+          setLastVisitByUser(lastVisitByUser);
         });
     }
-  }, [libraryId, token])
+  }, [lastVisitByUser, libraryId, token])
 
   const handleClick = () => {
     const endpoints = {
@@ -59,15 +61,14 @@ const LibraryDetail = ({ libraryInfo }) => {
 
     axios.post(endpoints.RECORD_VISITS, { libraryId }, {
       headers: {
-        "x-access-token": localStorage.getItem("token"),
+        "x-access-token": token,
       }
     })
       .then(response => {
-        const { time, count, countByUser } = response.data;
-        setCreatedAt(time);
+        const { count, countByUser, lastVisitByUser } = response.data;
         setCount(count);
         setCountByUser(countByUser);
-
+        setLastVisitByUser(lastVisitByUser);
       });
 
   }
@@ -82,7 +83,7 @@ const LibraryDetail = ({ libraryInfo }) => {
       <p>{libraryInfo.address}</p>
       {token && <Button onClick={handleClick}>Record Visit</Button>}
       {token && countByUser && <p>You have visited {countByUser} {formatCountableNoun("time", countByUser)}.</p>}
-      {token && createdAt && <p>Last visited: {formatDateFromSQL(createdAt)}</p>}
+      {token && lastVisitByUser && <p>Last visit was: {formatDateFromSQL(lastVisitByUser)}</p>}
       <p>All users have visited {count} {formatCountableNoun("time", count)}.</p>
       {!token && !selectedImageUrl && <p>No photos!</p>}
       {!token && !selectedImageUrl && <Link to="/login"> Login</Link>}
