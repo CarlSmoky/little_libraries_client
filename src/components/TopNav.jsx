@@ -35,6 +35,7 @@ export default function TopNav() {
     if (!date) {
       alert("FYI, you are not logged in")
     } else if (!timestampIsFresh(date)) {
+      console.log("DATE", date);
       alert("Time expired, please log in again");
       logoutHandler()
     }
