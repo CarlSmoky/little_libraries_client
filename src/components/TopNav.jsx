@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Navbar, Container, NavDropdown, Nav, Offcanvas, Form, FormControl, Button } from 'react-bootstrap/';
 import { useNavigate, Link } from 'react-router-dom';
 import { authContext } from '../providers/AuthProvider';
 import { getAuth, signOut } from "firebase/auth";
+import { timestampIsFresh } from '../helpers/dateHelpers';
 
 export default function TopNav() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function TopNav() {
   const logoutHandler = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
+    localStorage.removeItem("date");
     firebaseSignOut();
     resetUserInfo();
     navigate("/");
@@ -27,6 +29,18 @@ export default function TopNav() {
 
   const token = localStorage.getItem("token");
   const name = localStorage.getItem("name");
+  const date = localStorage.getItem("date");
+
+  useEffect(() => {
+    if (!date) {
+      alert("FYI, you are not logged in")
+    } else if (!timestampIsFresh(date)) {
+      alert("Time expired, please log in again");
+      logoutHandler()
+    }
+  },[]);
+
+
 
   return (
     <div>
