@@ -13,4 +13,9 @@ function timestampIsFresh(timestamp) {
   return now < tsDatePlusOne;
 }
 
-export { timestampIsFresh }
+function formatDateFromSQL(sqlTimestamp) {
+  const date = new Date(sqlTimestamp);
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDay() + 1}`;
+}
+
+export { timestampIsFresh, formatDateFromSQL };

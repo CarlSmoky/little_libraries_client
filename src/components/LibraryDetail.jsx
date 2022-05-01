@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { getStorage, ref, getDownloadURL } from "firebase/storage"; // temp
 import { Button } from 'react-bootstrap/';
+import { formatDateFromSQL } from '../helpers/dateHelpers';
 import axios from 'axios';
 
 
@@ -71,14 +72,18 @@ const LibraryDetail = ({ libraryInfo }) => {
 
   }
 
+  function formatCountableNoun(noun, count) {
+    return count === 1 ? noun : noun + "s";
+  }
+
   return (
     <div className="libraryDetails">
       {selectedImageUrl && <img src={selectedImageUrl} alt="photo of library" />}
       <p>{libraryInfo.address}</p>
       {token && <Button onClick={handleClick}>Record Visit</Button>}
-      {token && countByUser && <p>You have visited {countByUser} times</p>}
-      {token && createdAt && <p>{createdAt}</p>}
-      <p>All users have visited {count} times</p>
+      {token && countByUser && <p>You have visited {countByUser} {formatCountableNoun("time", countByUser)}.</p>}
+      {token && createdAt && <p>Last visited: {formatDateFromSQL(createdAt)}</p>}
+      <p>All users have visited {count} {formatCountableNoun("time", count)}.</p>
       {!token && !selectedImageUrl && <p>No photos!</p>}
       {!token && !selectedImageUrl && <Link to="/login"> Login</Link>}
       {token && !selectedImageUrl && <Link to="/upload" state={{ libraryId }}>Upload image</Link>}
