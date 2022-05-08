@@ -26,7 +26,7 @@ const Locate = ({ panTo, autoDropMarker }) => {
         navigator.geolocation.getCurrentPosition(
           handleLocationSuccess,
           handleLocationFailure,
-          {}
+          {enableHighAccuracy: true, maximumAge: 10000}
         );
       }}
     >
