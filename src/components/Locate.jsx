@@ -14,8 +14,8 @@ const Locate = ({ panTo, autoDropMarker }) => {
     })
   }
 
-  const handleLocationFailure = () => {
-
+  const handleLocationFailure = (error) => {
+    alert(error.code + ": " + error.message); 
   }
 
   return (
