@@ -1,7 +1,34 @@
 :root {
-  --dark: #B8B8AA;
+  /* --dark: #B8B8AA;
   --mid: #CFC0BD;
-  --light: #f0f7f4;
+  --light: #f0f7f4; */
+  --dark: #6baa75; /* green */
+  --mid: #5c5c5d;
+  --light: #eadacd;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --ff-primary: 'Roboto', sans-serif;
+  --ff-secondary: 'Open Sans', sans-serif;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ff-secondary);
+  background: var(--clr-grey-10);
+  color: var(--mid);
+  line-height: 1.5;
+  font-size: 0.875rem; /*14px*/
+  background-color: var(--light) !important;
 }
 
 .mid-color {
@@ -19,15 +46,11 @@
 
 .main-container {
   margin-top: 0.13rem;
-}
-
-body {
-  /* this is to overide bootstrap and fill the space between the footer and the content */
-  background-color: var(--dark)!important; 
+  position: relative;
 }
 
 .footer {
-  background-color: var(--dark);
+  background-color: var(--mid);
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -54,11 +77,11 @@ body {
 }
 
 .search {
-  margin-top: 2.6rem;
+  margin-top: 0rem;
 }
 
 .locate {
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 /* library details */
@@ -68,7 +91,7 @@ body {
 }
 
 .libraryDetails {
-  background-color: var(--dark);
+  background-color: var(--mid);
   width: 80%;
 }
 
@@ -93,7 +116,75 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* fulll screen */
+.nav-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 100;
+  margin: 0 0;
+  padding: 0 1rem;
+  height: 3rem;
+  background-color: var(--light);
+}
+
+ul {
+  list-style-type: none;
+}
+
+.links {
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition);
+  margin: 0;
+}
+
+.links li a {
+  color: var(--mid);
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  display: block;
+  padding: 0.5rem 1rem;
+  transition: var(--transition);
+  text-align: left;
+  margin: 0;
+}
+
+.links a:hover {
+  background: var(--mid);
+  color: var(--light);
+  padding-left: 1.5rem;
+}
+
+.show-links {
+  height: 10rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-toggle {
+  font-size: 1.5rem;
+  color: var(--mid);
+  background: transparent;
+  border-color: transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.nav-toggle:hover {
+  /* color: var(--clr-primary-1); */
+  transform: rotate(90deg);
+}
+
+.logo {
+  height: 3rem;
+  position: relative;
+  left: -0.29rem;
+}
+
+
+/* full screen */
 @media screen and (min-width: 501px) {
   html {
     height: 100%;

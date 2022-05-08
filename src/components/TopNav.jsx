@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from 'react'
-import { Navbar, Container, NavDropdown, Nav, Offcanvas, Form, FormControl, Button } from 'react-bootstrap/';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import { authContext } from '../providers/AuthProvider';
 import { getAuth, signOut } from "firebase/auth";
@@ -8,6 +7,7 @@ import { timestampIsFresh } from '../helpers/dateHelpers';
 export default function TopNav() {
   const navigate = useNavigate();
   const { user, resetUserInfo } = useContext(authContext);
+  const [showing, setShowing] = useState(false);
 
   const firebaseSignOut = () => {
     const auth = getAuth();
@@ -39,57 +39,53 @@ export default function TopNav() {
       alert("Time expired, please log in again");
       logoutHandler()
     }
-  },[]);
+  }, []);
 
-
+  const closeNavBar = () => {
+    setShowing(false);
+  }
 
   return (
     <div>
-      <Navbar className="mid-color" expand={false}>
-        <Container fluid>
-          <Navbar.Brand href="#" id="navbar-title">Little Libraries of Toronto</Navbar.Brand>
-          <Navbar.Toggle aria-controls="offcanvasNavbar" />
-          <Navbar.Offcanvas
-            id="offcanvasNavbar"
-            aria-labelledby="offcanvasNavbarLabel"
-            placement="end"
-          >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">Little Libraries</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                {!token && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
-                {!token && <Nav.Link as={Link} to="/signup">Sign Up</Nav.Link>}
-                {token && <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>}
-                {name && <Nav.Link >{name}</Nav.Link>}
-                <NavDropdown title="More" id="offcanvasNavbarDropdown">
-                  <NavDropdown.Item>
-                    <Nav.Link as={Link} to="/aboutus">
-                      About Us
-                    </Nav.Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Dashboard</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  {/* <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item> */}
-                </NavDropdown>
-              </Nav>
-              {/* <Form className="d-flex">
-                <FormControl
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                />
-                <Button variant="outline-success">Search</Button>
-              </Form> */}
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </Navbar>
-    </div>
+      <nav>
+        <div className="nav-header">
+          <img src="/logo-png.png" className="logo" alt="logo" />
+          <button className="nav-toggle" onClick={() => setShowing(!showing)}>
+            <i className="fas fa-bars"></i>
+          </button>
+        </div>
+        <ul className={`links 
+          ${showing ? "show-links" : ""}
+        `}>
+          <li>
+            <Link to="/" onClick={closeNavBar}>Home</Link>
+          </li>
+          <li>
+            <Link to="/aboutus" onClick={closeNavBar}>About Us</Link>
+          </li>
+          {!token &&
+            <li>
+              <Link to="/login" onClick={closeNavBar}>Login</Link>
+            </li>
+          }
+          {!token &&
+            <li>
+              <Link to="/signup" onClick={closeNavBar}>Sign Up</Link>
+            </li>
+          }
+          {name &&
+            <li>
+              <Link to="/">{name}</Link>
+            </li>
+          }
+          {token &&
+            <li>
+              <Link to="/" onClick={logoutHandler}>Logout</Link>
+            </li>
+          }
+
+        </ul>
+      </nav >
+    </div >
   );
 };
