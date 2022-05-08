@@ -1,24 +1,32 @@
 import React from 'react'
 
 const Locate = ({ panTo, autoDropMarker }) => {
+
+  const handleLocationSuccess =  (position) => {
+    console.log(position);
+    panTo({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    });
+    autoDropMarker({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    })
+  }
+
+  const handleLocationFailure = () => {
+
+  }
+
   return (
     <button
       className="locate"
       onClick={() => {
         console.log("LOCATE");
         navigator.geolocation.getCurrentPosition(
-          (position) => {
-            console.log(position);
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-            autoDropMarker({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            })
-          },
-          () => {console.log("geolocation error")}
+          handleLocationSuccess,
+          handleLocationFailure,
+          {}
         );
       }}
     >
