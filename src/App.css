@@ -172,10 +172,17 @@ ul {
   cursor: pointer;
 }
 
-.nav-toggle:hover {
-  /* color: var(--clr-primary-1); */
+.nav-toggle-horizontal {
+  transform: rotate(0);
+}
+
+.nav-toggle-vertical {
   transform: rotate(90deg);
 }
+
+/* .nav-toggle:hover {
+  transform: rotate(90deg);
+} */
 
 .logo {
   height: 3rem;

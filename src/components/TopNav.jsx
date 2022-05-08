@@ -50,7 +50,9 @@ export default function TopNav() {
       <nav>
         <div className="nav-header">
           <img src="/logo-png.png" className="logo" alt="logo" />
-          <button className="nav-toggle" onClick={() => setShowing(!showing)}>
+          <button className={`nav-toggle 
+          ${showing ? "nav-toggle-vertical" : "nav-toggle-horizontal"}`
+        } onClick={() => setShowing(!showing)}>
             <i className="fas fa-bars"></i>
           </button>
         </div>
