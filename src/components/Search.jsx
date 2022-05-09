@@ -12,7 +12,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 
-const Search = ({ panTo }) => {
+const Search = ({ panTo, autoDropMarker }) => {
   const {
     ready,
     value,
@@ -41,6 +41,7 @@ const Search = ({ panTo }) => {
       const { lat, lng } = await getLatLng(results[0]);
       console.log(lat, lng);
       panTo({ lat, lng });
+      autoDropMarker(({ lat, lng } ))
     } catch (error) {
       console.log("😱 Error: ", error);
     }
