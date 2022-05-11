@@ -24,6 +24,7 @@ export default function TopNav() {
     localStorage.removeItem("date");
     firebaseSignOut();
     resetUserInfo();
+    setShowing(false);
     navigate("/");
   };
 
@@ -49,7 +50,7 @@ export default function TopNav() {
     <div>
       <nav>
         <div className="nav-header">
-          <img src="/logo-png.png" className="logo" alt="logo" />
+        <Link to="/" onClick={closeNavBar}><img src="/logo-png.png" className="logo" alt="logo" /></Link>
           <button className={`nav-toggle 
           ${showing ? "nav-toggle-vertical" : "nav-toggle-horizontal"}`
         } onClick={() => setShowing(!showing)}>
