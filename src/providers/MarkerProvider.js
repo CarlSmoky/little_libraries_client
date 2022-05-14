@@ -16,7 +16,8 @@ const MarkerProvider = props => {
           name: entry.address,
           id: entry.id,
           key: entry.id,
-          registered: true
+          registered: true,
+          imageURL: entry.image_url
         }))
 
         setMarkers(dbMarkers);
