@@ -133,6 +133,22 @@ const Map = ({ id, showSearch, mapStyle }) => {
     setSelected(newMarker);
   }
 
+  const addImageURL = (id, imageURL) => {
+    const endpoints = {
+      "LOGIN": "api/libraries/imageURL"
+    }
+    console.log("in addImageURL", imageURL);
+    axios.post(endpoints.LOGIN, {id, imageURL})
+      .then(response => {
+        console.log(response.data);
+        // navigate('/')
+      })
+      .catch(err => {
+        const { message } = err.response.data;
+        console.log(message);
+      });
+  }
+
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -155,11 +171,21 @@ const Map = ({ id, showSearch, mapStyle }) => {
             position={{ lat: marker.lat, lng: marker.lng }}
             onClick={() => {
               setSelected(marker);
+              console.log("MAP: marker object", marker);
               const storage = getStorage();
-              getDownloadURL(ref(storage, `images/${marker.id}.jpg`))
+              if (marker.imageURL) {
+                setSelectedImageUrl(marker.imageURL);
+                console.log("MAP: we already have the url");
+              } else {
+                getDownloadURL(ref(storage, `images/${marker.id}.jpg`))
                 .then(url => {
+                  console.log("MAP: we had to fetch the URL");
+                  console.log("fetched url", url);
                   setSelectedImageUrl(url);
+                  addImageURL(marker.id, url);
+                  // TODO: error handling when we figure out how!
                 })
+              }
             }}
           />
         ))}
