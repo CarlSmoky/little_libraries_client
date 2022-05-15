@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap/';
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { markerContext } from '../providers/MarkerProvider';
@@ -7,6 +6,7 @@ import ImageLoadTest from './ImageLoadTest'
 
 const LibraryForm = () => {
   const location = useLocation();
+  const { fetchMarkers, typedAddress } = useContext(markerContext);
   const { lat, lng } = location.state;
   const [formData, setFormData] = useState({
     address: "",
@@ -14,7 +14,6 @@ const LibraryForm = () => {
     lng: lng
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const { fetchMarkers } = useContext(markerContext);
   const navigate = useNavigate();
   const [libraryId, setLibraryId] = useState('');
 
@@ -38,15 +37,11 @@ const LibraryForm = () => {
       }
     })
       .then(response => {
-        // console.log("I'm the callback from the put call");
-        // console.log("Our Response:", response.data);
         if (!response.data.auth) {
           setErrorMessage(response.data.message);
           console.log(errorMessage);
         } else {
           fetchMarkers();
-          // navigate(`/upload/${response.data.library.id}`)
-          // navigate(`/library/${response.data.library.id}`)
           setLibraryId(response.data.library.id);
         }
       });
@@ -54,34 +49,30 @@ const LibraryForm = () => {
   const token = localStorage.getItem("token");
 
   return (
-    <div className="card">
-      <div className="card-body p-5">
-        {token && <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <h2 class="text-uppercase text-center mb-5">Register New Library</h2>
-          <Row className="mb-3">
-            <Form.Group controlId="validationCustom01">
-              <Form.Label>Enter Name or Address of Library</Form.Label>
-              <Form.Control
-                name="address"
-                value={formData.address}
-                onChange={onChange}
-                required
-                type="text"
-                placeholder="Name/Address"
-              />
-              <Form.Control.Feedback>Please select an image of the library</Form.Control.Feedback>
-            </Form.Group>
-          </Row>
-          {!libraryId && <Button type="submit">Submit form</Button>}
-        </Form>}
-        <p>{errorMessage && errorMessage}</p>
-        {errorMessage && <Link to={"/login"}><Button Link>Login</Button></Link>}
-        {!token && <Link to={"/login"}><Button Link>Login</Button></Link>}
+    <div className="login-form">
+      <h2>Register New Library</h2>
+      {token && <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          {/* <label>Email address </label> */}
+          <input
+            type="text"
+            name="address"
+            placeholder='address or name'
+            onChange={onChange}
+            value={typedAddress || formData.address}
+            required
+            disabled={libraryId}
+          />
+        </div>
+        <div className="button-container">
+          {!libraryId && <input type="submit" />}
+        </div>
+      </form>}
+      <p>{errorMessage}</p>
+      {errorMessage && <Link to={"/login"}><button className="button-basic">Login</button></Link>}
+      {!token && <Link to={"/login"}><button className="button-basic">Login</button></Link>}
         {libraryId && <ImageLoadTest libraryId={libraryId}/>}
-      </div>
     </div>
-  );
+  )
 }
-
-
 export default LibraryForm

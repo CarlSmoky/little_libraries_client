@@ -5,6 +5,7 @@ export const markerContext = createContext();
 
 const MarkerProvider = props => {
   const [markers, setMarkers] = useState([]);
+  const [typedAddress, setTypedAddress] = useState("");
 
   const fetchMarkers = () => {
     axios.get('/api/libraries')
@@ -28,7 +29,7 @@ const MarkerProvider = props => {
     fetchMarkers();
   }, []);
 
-  const provideData = { markers, setMarkers, fetchMarkers };
+  const provideData = { markers, setMarkers, fetchMarkers, typedAddress, setTypedAddress };
 
   return (
     <markerContext.Provider value={provideData}>
