@@ -15,7 +15,7 @@ function timestampIsFresh(timestamp) {
 
 function formatDateFromSQL(sqlTimestamp) {
   const date = new Date(sqlTimestamp);
-  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDay() + 1}`;
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} at ${date.getHours()}:${date.getMinutes()}`;
 }
 
 export { timestampIsFresh, formatDateFromSQL };
