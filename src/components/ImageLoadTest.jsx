@@ -54,13 +54,13 @@ export default function ImageLoadTest({libraryId}) {
         <div>
           <img alt="not found" width={"250px"} src={URL.createObjectURL(selectedImage)} />
           <br />
-          <button onClick={() => setSelectedImage(null)}>Remove</button>
+          <button className="button-basic" onClick={() => setSelectedImage(null)}>Remove</button>
         </div>
       )}
       <br />
 
       <br />
-      <input
+      <input className="button-container"
         type="file"
         name="myImage"
         display={selectedImage ? "none" : ""}
@@ -71,7 +71,7 @@ export default function ImageLoadTest({libraryId}) {
         }}
       />
       <br/>
-      {selectedImage && <button onClick={uploadImageToFirebase}>Submit</button>}
+      {selectedImage && <button className="button-basic" onClick={uploadImageToFirebase}>Submit</button>}
     </div>
   );
 }

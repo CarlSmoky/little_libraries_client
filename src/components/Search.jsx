@@ -1,3 +1,4 @@
+import React, { useContext } from 'react'
 import {
   Combobox,
   ComboboxInput,
@@ -11,8 +12,10 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { markerContext } from '../providers/MarkerProvider';
 
 const Search = ({ panTo, autoDropMarker }) => {
+  const { setTypedAddress } = useContext(markerContext);
   const {
     ready,
     value,
@@ -35,6 +38,8 @@ const Search = ({ panTo, autoDropMarker }) => {
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
+
+    setTypedAddress(address.split(",")[0]);
 
     try {
       const results = await getGeocode({ address });
