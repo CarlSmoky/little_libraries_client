@@ -6,7 +6,7 @@ import ImageLoadTest from './ImageLoadTest'
 
 const LibraryForm = () => {
   const location = useLocation();
-  const { fetchMarkers, typedAddress } = useContext(markerContext);
+  const { fetchMarkers, typedAddress, setTypedAddress } = useContext(markerContext);
   const { lat, lng } = location.state;
   const [formData, setFormData] = useState({
     address: "",
@@ -17,12 +17,17 @@ const LibraryForm = () => {
   const navigate = useNavigate();
   const [libraryId, setLibraryId] = useState('');
 
+  useEffect(() => {
+    setFormData({ ...formData, address: typedAddress || "" });
+  }, []);
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const [validated, setValidated] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
+    setTypedAddress("");
     save(formData);
   };
 
@@ -59,7 +64,7 @@ const LibraryForm = () => {
             name="address"
             placeholder='address or name'
             onChange={onChange}
-            value={typedAddress || formData.address}
+            value={formData.address}
             required
             disabled={libraryId}
           />

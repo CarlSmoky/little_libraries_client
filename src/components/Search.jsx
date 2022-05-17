@@ -61,6 +61,9 @@ const Search = ({ panTo, autoDropMarker }) => {
           disabled={!ready}
           placeholder="Search your location"
         />
+        <i className="fas fa-arrow-up"
+          onClick={(e) => setValue('')}></i>
+        
         <ComboboxPopover>
           <ComboboxList>
             {status === "OK" &&
