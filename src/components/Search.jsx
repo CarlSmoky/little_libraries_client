@@ -55,15 +55,16 @@ const Search = ({ panTo, autoDropMarker }) => {
   return (
     <div className="search">
       <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          value={value}
-          onChange={handleInput}
-          disabled={!ready}
-          placeholder="Search your location"
-        />
-        <i className="fas fa-arrow-up"
-          onClick={(e) => setValue('')}></i>
-        
+        <div className="search-box-container">
+          <ComboboxInput
+            value={value}
+            onChange={handleInput}
+            disabled={!ready}
+            placeholder="Search your location"
+          />
+          <i className="fas fa-times-circle search-close-icon"
+            onClick={(e) => setValue('')}></i>
+        </div>
         <ComboboxPopover>
           <ComboboxList>
             {status === "OK" &&

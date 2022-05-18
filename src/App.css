@@ -294,6 +294,20 @@ ul {
   margin: auto;
 }
 
+.search-box-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  width: 95%;
+  margin-left: 1rem;
+}
+
+.search-close-icon {
+  position: relative;
+  left: -1.4rem;
+  top: 1.2rem;
+}
+
 
 /* full screen */
 @media screen and (min-width: 501px) {
