@@ -195,7 +195,9 @@ ul {
 }
 
 .login-form {
-  margin: 4% 25%;
+  margin: 4% auto;
+  width: 80%;
+  max-width: 35rem;
 }
 
 .login-form h2 {
@@ -222,6 +224,7 @@ ul {
   box-sizing: border-box;
   font-size: 1rem;
   transition: 0.2s linear;
+  border-radius: 4px;
 }
 
 .input-container input:focus {
@@ -241,6 +244,7 @@ ul {
   font-weight: 400;
   margin-top: 1rem;
   transition: all .1s ease-in-out ;
+  border-radius: 4px;
 }
 
 .button-container input:hover {
@@ -265,6 +269,7 @@ ul {
   font-weight: 400;
   margin-top: 1rem;
   transition: all .1s ease-in-out ;
+  border-radius: 4px;
 }
 
 .button-basic:hover {
@@ -275,6 +280,32 @@ ul {
 .button-basic:active {
   transform: translateY(-1px);
   box-shadow: var(--light-shadow);
+}
+
+.file-input-container {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.file-input {
+  text-align-last: center;
+  margin: auto;
+}
+
+.search-box-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  width: 95%;
+  margin-left: 1rem;
+}
+
+.search-close-icon {
+  position: relative;
+  left: -1.4rem;
+  top: 1.2rem;
 }
 
 

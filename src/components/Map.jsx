@@ -156,7 +156,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
   return (
     <>
       {showSearch && <Search panTo={panTo} autoDropMarker={autoDropMarker} />}
-      {showSearch && <Locate panTo={panTo} autoDropMarker={autoDropMarker} />}
+      {/* {showSearch && <Locate panTo={panTo} autoDropMarker={autoDropMarker} />} */}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         center={center}

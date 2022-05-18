@@ -60,18 +60,20 @@ export default function ImageLoadTest({libraryId}) {
       <br />
 
       <br />
-      <input className="button-container"
-        type="file"
-        name="myImage"
-        display={selectedImage ? "none" : ""}
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          const uploadedFile = event.target.files[0];
-          setSelectedImage(uploadedFile);
-        }}
-      />
+      <div className="file-input-container">
+        <input className="button-container file-input"
+          type="file"
+          name="myImage"
+          display={selectedImage ? "none" : ""}
+          onChange={(event) => {
+            console.log(event.target.files[0]);
+            const uploadedFile = event.target.files[0];
+            setSelectedImage(uploadedFile);
+          }}
+        />
+      </div>
       <br/>
-      {selectedImage && <button className="button-basic" onClick={uploadImageToFirebase}>Submit</button>}
+        {selectedImage && <button className="button-basic" onClick={uploadImageToFirebase}>Submit</button>}
     </div>
   );
 }
