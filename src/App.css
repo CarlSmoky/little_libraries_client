@@ -194,15 +194,20 @@ ul {
   left: -0.29rem;
 }
 
-.login-form {
+.login-form, .signUp-form {
   margin: 4% auto;
   width: 80%;
   max-width: 35rem;
 }
 
-.login-form h2 {
+.login-form>h2, .signUp-form>h2 {
   color: var(--mid);
   padding-bottom: 1rem;
+}
+
+.signUp-form__label {
+  color: var(--mid);
+  text-align: left;
 }
 
 .error {
@@ -307,6 +312,8 @@ ul {
   left: -1.4rem;
   top: 1.2rem;
 }
+
+
 
 
 /* full screen */
