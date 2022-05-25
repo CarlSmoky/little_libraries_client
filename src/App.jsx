@@ -1,16 +1,17 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import useApplicationData from './hooks/useApplicationData';
-import HomePage from './pages/HomePage';
 import TopNav from './components/TopNav';
+import HomePage from './pages/HomePage';
+import AboutUs from './components/AboutUs';
 import Footer from './components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ImageLoadTest from './components/ImageLoadTest';
 import LibraryForm from './components/LibraryForm';
 import LibraryPage from './pages/LibraryPage';
-import AboutUs from './components/AboutUs';
+import UserPage from './pages/UserPage';
 
 export default function App() {
   console.log("TEST ENV", process.env.TEST);
@@ -26,6 +27,7 @@ export default function App() {
         <Route path ="/libraryForm" element={<LibraryForm />}/>
         <Route path ="/library/:id" element={<LibraryPage />}/>
         <Route path ="/aboutus" element={<AboutUs />}/>
+        <Route path ="/userpage" element={<UserPage />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -78,7 +78,7 @@ export default function TopNav() {
           }
           {name &&
             <li>
-              <Link to="/">{name}</Link>
+              <Link to="/userpage" onClick={closeNavBar}>{name}</Link>
             </li>
           }
           {token &&
