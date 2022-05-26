@@ -33,6 +33,7 @@ body {
   font-size: 0.875rem;
   /*14px*/
   background-color: var(--light) !important;
+  text-decoration: none;
 }
 
 .mid-color {
@@ -313,6 +314,55 @@ ul {
   top: 1.2rem;
 }
 
+.libraryListForUser {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.libraryListTable {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.libraryListTable table, td, th {
+  border: 2px solid var(--mid);
+}
+
+.libraryListTable-col1 {
+  /* width: 8rem; */
+  height: 7rem;
+  line-height: 0;
+}
+
+.libraryListTable-col2 {
+  width: 40%;
+}
+
+.libraryListTable-col3 {
+  width: 30%;
+}
+
+.libraryListTable img {
+  height: 7rem;
+  object-fit: cover;
+  padding: .2rem;
+}
+
+a:link,
+a:hover,
+a:visited,
+a:active {
+text-decoration: inherit;
+color: inherit;
+}
+
+.mostRecentlyVisitedLibrary,
+.mostFrequentlyVisitedLibrary {
+  margin: 0 auto;
+}
 
 
 
