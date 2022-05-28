@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import MostFrequentLibraryListItem from './MostFrequentLibraryListItem';
+import LibraryListItem from './LibraryListItem';
 
 const LibraryList = () => {
   // const [mostFrequentlyVisitedLibrary, setmostFrequentlyVisitedLibrary] = useState([]);
@@ -26,13 +26,13 @@ const LibraryList = () => {
   }, []);
 
   const pressedShowAll = () => {
-    displayCount.current += 1;
+    displayCount.current += 10;
     setDisplayedLibraries(mostFrequentlyVisited.current.slice(0,displayCount.current));
   }
 
   const topLibraries = displayedLibraries.map(library => {
     return (
-      <MostFrequentLibraryListItem
+      <LibraryListItem
         key={library.id}
         id={library.id}
         address={library.address}
@@ -51,16 +51,10 @@ const LibraryList = () => {
     <div className="libraryListForUser">
       <div className="mostFrequentlyVisitedLibrary">
         <h2>Most Frequently Visited Library</h2>
-        <table className="libraryListTable">
-          <tr>
-            <th>Photo</th>
-            <th>Address</th>
-          </tr>
-          { topLibraries }
-        </table>
+        { topLibraries }
       </div>
       { displayShowMoreButton() &&
-        <button onClick={pressedShowAll}>Show All</button> }
+        <button className="button-basic bottom-margin button-narrow" onClick={pressedShowAll}>Show All</button> }
     </div>
   )
 }
