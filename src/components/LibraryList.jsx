@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import MostRecentLibraryListItem from './MostRecentLibraryListItem';
-import MostFrequentLibraryListItem from './MostFrequentLibraryListItem';
-
-
-
+import LibraryListItem from './LibraryListItem';
 
 const LibraryList = () => {
-  const [mostRecentlyVisitedLibrary, setMostRecentlyVisitedLibrary] = useState([]);
-  const [mostFrequentlyVisitedLibrary, setmostFrequentlyVisitedLibrary] = useState([]);
+  // const [mostFrequentlyVisitedLibrary, setmostFrequentlyVisitedLibrary] = useState([]);
+  const [displayedLibraries, setDisplayedLibraries] = useState([]);
+  const mostFrequentlyVisited = useRef();
+  const displayCount = useRef(10);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -18,9 +16,8 @@ const LibraryList = () => {
     }
     axios.post(endpoints.USER, '', { headers })
       .then(response => {
-        const { MostRecentlyVisitedLibrariesForUser, MostFrequentlyVisitedLibrariesForUser } = response.data;
-        setMostRecentlyVisitedLibrary(MostRecentlyVisitedLibrariesForUser);
-        setmostFrequentlyVisitedLibrary(MostFrequentlyVisitedLibrariesForUser);
+        mostFrequentlyVisited.current = response.data;
+        setDisplayedLibraries(mostFrequentlyVisited.current.slice(0, displayCount.current));
       })
       .catch(err => {
         console.log(err.response.data);
@@ -28,56 +25,36 @@ const LibraryList = () => {
 
   }, []);
 
-  const mostRecentlyVisitedLibraries = mostRecentlyVisitedLibrary.map(library => {
-    return (
-      <MostRecentLibraryListItem
-        key={library.id}
-        id={library.id}
-        address={library.address}
-        imageUrl={library.image_url}
-        lastVisited={library.last_visited}
-      />
-    )
-  });
+  const pressedShowAll = () => {
+    displayCount.current += 10;
+    setDisplayedLibraries(mostFrequentlyVisited.current.slice(0,displayCount.current));
+  }
 
-  const mostFrequentlyVisitedLibraries = mostFrequentlyVisitedLibrary.map(library => {
+  const topLibraries = displayedLibraries.map(library => {
     return (
-      <MostFrequentLibraryListItem
+      <LibraryListItem
         key={library.id}
         id={library.id}
         address={library.address}
         imageUrl={library.image_url}
         count={library.count}
+        lastVisited={library.last_visited}
       />
     )
   });
 
-
+  const displayShowMoreButton = () => {
+    return mostFrequentlyVisited.current && displayedLibraries.length < mostFrequentlyVisited.current.length;
+  }
 
   return (
     <div className="libraryListForUser">
-      <div className="mostRecentlyVisitedLibrary">
-        <h2>Most Recenly Visited Library</h2>
-        <table className="libraryListTable">
-          <tr>
-            <th>Photo</th>
-            <th>Address</th>
-            <th>Last visited</th>
-          </tr>
-          {mostRecentlyVisitedLibraries}
-        </table>
-      </div>
       <div className="mostFrequentlyVisitedLibrary">
         <h2>Most Frequently Visited Library</h2>
-        <table className="libraryListTable">
-          <tr>
-            <th>Photo</th>
-            <th>Address</th>
-            <th>Count</th>
-          </tr>
-          {mostFrequentlyVisitedLibraries}
-        </table>
+        { topLibraries }
       </div>
+      { displayShowMoreButton() &&
+        <button className="button-basic bottom-margin button-narrow" onClick={pressedShowAll}>Show All</button> }
     </div>
   )
 }

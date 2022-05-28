@@ -270,12 +270,20 @@ ul {
   width: 100%;
   padding: 10px 15px;
   border: 0;
-  color: #fff;
+  color: var(--light);
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1rem;
   transition: all .1s ease-in-out ;
   border-radius: 4px;
+}
+
+.bottom-margin {
+  margin-bottom: 2rem;
+}
+
+.button-narrow {
+  width: 30%;
 }
 
 .button-basic:hover {
@@ -320,35 +328,54 @@ ul {
 
 table {
   border-collapse: collapse;
+  margin: 0;
 }
 
-.libraryListTable {
-  margin: 0 auto;
-  width: 80%;
+/* Library List Item Cell */
+
+.library-list-item {
+  display: flex;
+  justify-content: flex-start;
+  background-color: var(--dark);
+  height: 6rem;
+  margin: 0.5rem;
 }
 
-.libraryListTable table, td, th {
-  border: 2px solid var(--mid);
+.library-list-item p, h3 {
+  text-align: left;
+  color: var(--light);
+  line-height: 1rem;
 }
 
-.libraryListTable-col1 {
-  /* width: 8rem; */
-  height: 7rem;
-  line-height: 0;
+.library-list-item h3 {
+  font-size: .9rem;
 }
 
-.libraryListTable-col2 {
-  width: 40%;
+.library-list-item p {
+  filter: brightness(85%);
 }
 
-.libraryListTable-col3 {
-  width: 30%;
+.library-list-item__image {
+  display: flex;
+  flex-direction: row;
+  width: 8rem;
+  align-items: flex-start;
 }
 
-.libraryListTable img {
-  height: 7rem;
+.library-list-item__image img {
   object-fit: cover;
-  padding: .2rem;
+  height: 100%;
+}
+
+.library-list-item__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.3rem;
+}
+
+.library-list-item__details--bottom {
+  justify-content: flex-end;
 }
 
 a:link,
@@ -359,7 +386,6 @@ text-decoration: inherit;
 color: inherit;
 }
 
-.mostRecentlyVisitedLibrary,
 .mostFrequentlyVisitedLibrary {
   margin: 0 auto;
 }

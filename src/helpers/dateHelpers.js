@@ -23,7 +23,7 @@ function formatDateFromSQL(sqlTimestamp) {
   const hour = dateDisplay(date.getHours());
   const min = dateDisplay(date.getMinutes());
 
-  return `${date.getFullYear()}/${month}/${day} at ${hour}:${min}`;
+  return `${date.getFullYear()}/${month}/${day} ${hour}:${min}`;
 }
 
 export { timestampIsFresh, formatDateFromSQL };
