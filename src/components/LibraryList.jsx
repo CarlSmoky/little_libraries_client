@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import MostFrequentLibraryListItem from './MostFrequentLibraryListItem';
 
 const LibraryList = () => {
-  const [mostFrequentlyVisitedLibrary, setmostFrequentlyVisitedLibrary] = useState([]);
+  // const [mostFrequentlyVisitedLibrary, setmostFrequentlyVisitedLibrary] = useState([]);
+  const [displayedLibraries, setDisplayedLibraries] = useState([]);
+  const mostFrequentlyVisited = useRef();
+  const displayCount = useRef(10);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -13,7 +16,8 @@ const LibraryList = () => {
     }
     axios.post(endpoints.USER, '', { headers })
       .then(response => {
-        setmostFrequentlyVisitedLibrary(response.data);
+        mostFrequentlyVisited.current = response.data;
+        setDisplayedLibraries(mostFrequentlyVisited.current.slice(0, displayCount.current));
       })
       .catch(err => {
         console.log(err.response.data);
@@ -21,7 +25,12 @@ const LibraryList = () => {
 
   }, []);
 
-  const mostFrequentlyVisitedLibraries = mostFrequentlyVisitedLibrary.map(library => {
+  const pressedShowAll = () => {
+    displayCount.current += 1;
+    setDisplayedLibraries(mostFrequentlyVisited.current.slice(0,displayCount.current));
+  }
+
+  const topLibraries = displayedLibraries.map(library => {
     return (
       <MostFrequentLibraryListItem
         key={library.id}
@@ -34,6 +43,10 @@ const LibraryList = () => {
     )
   });
 
+  const displayShowMoreButton = () => {
+    return mostFrequentlyVisited.current && displayedLibraries.length < mostFrequentlyVisited.current.length;
+  }
+
   return (
     <div className="libraryListForUser">
       <div className="mostFrequentlyVisitedLibrary">
@@ -43,9 +56,11 @@ const LibraryList = () => {
             <th>Photo</th>
             <th>Address</th>
           </tr>
-          {mostFrequentlyVisitedLibraries}
+          { topLibraries }
         </table>
       </div>
+      { displayShowMoreButton() &&
+        <button onClick={pressedShowAll}>Show All</button> }
     </div>
   )
 }
