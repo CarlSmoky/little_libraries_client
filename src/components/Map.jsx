@@ -35,10 +35,10 @@ const Map = ({ id, showSearch, mapStyle }) => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-
+  const userCenter = JSON.parse(localStorage.getItem('user-map-center'));
   const { markers, setMarkers } = useContext(markerContext);
   const [localMarkers, setLocalMarkers ] = useState(markers);
-  const [center, setCenter] = useState(defaultCenter);
+  const [center, setCenter] = useState(userCenter || defaultCenter);
   const [selected, setSelected] = useState(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState();
   const [mapContainerStyle, setMapContainerStyle] = useState(mapStyle);
@@ -102,11 +102,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
 
   // todo: move to helper file
   const hasCloseNeighbour = (existingMarkers, newMarker) => {
-    // const threshold = 0.00001 // false for here
-    // const threshold = 0.00005 // false
-    // const threshold = 0.00008 // false
-    // const threshold = 0.0001  // true for here
-    const threshold = 0.00008  //
+    const threshold = 0.00005  //
     const closeLat = existingMarkers.filter(m => Math.abs(newMarker.lat - m.lat) < threshold);
     const closeLatAndLong = closeLat.filter(m => Math.abs(newMarker.lng - m.lng) < threshold);
     return closeLatAndLong.length > 0;
