@@ -3,12 +3,13 @@ import axios from 'axios';
 import LibraryListItem from './LibraryListItem';
 
 const LibraryList = () => {
-  // const [mostFrequentlyVisitedLibrary, setmostFrequentlyVisitedLibrary] = useState([]);
   const [displayedLibraries, setDisplayedLibraries] = useState([]);
   const mostFrequentlyVisited = useRef();
   const displayCount = useRef(10);
 
   useEffect(() => {
+    displayCount.current = sessionStorage.getItem("userpage-display-items") || 10;
+
     const token = localStorage.getItem("token");
     const headers = { "x-access-token": token, };
     const endpoints = {
@@ -26,7 +27,8 @@ const LibraryList = () => {
   }, []);
 
   const pressedShowAll = () => {
-    displayCount.current += 10;
+    displayCount.current += 200;
+    sessionStorage.setItem("userpage-display-items", displayCount.current);
     setDisplayedLibraries(mostFrequentlyVisited.current.slice(0,displayCount.current));
   }
 
@@ -50,11 +52,11 @@ const LibraryList = () => {
   return (
     <div className="libraryListForUser">
       <div className="mostFrequentlyVisitedLibrary">
-        <h2>Most Frequently Visited Library</h2>
+        <h2>Most Frequently Visited Libraries</h2>
         { topLibraries }
       </div>
       { displayShowMoreButton() &&
-        <button className="button-basic bottom-margin button-narrow" onClick={pressedShowAll}>Show All</button> }
+        <button className="button-basic bottom-margin button-narrow" onClick={pressedShowAll}>Show All</button> || <div className='bottom-spacer'></div>}
     </div>
   )
 }

@@ -378,6 +378,10 @@ table {
   justify-content: flex-end;
 }
 
+.bottom-spacer {
+  margin-bottom: 3rem;;
+}
+
 a:link,
 a:hover,
 a:visited,
