@@ -8,8 +8,8 @@ const LibraryDetailList = () => {
 
   return (
     <>
-      <div className="library-detail-list-container">
-        {markers.map(marker => (<LibraryDetail listView libraryInfo={marker} key={marker.id} loading="lazy"/>))}
+      <div className="library-detail-list">
+        {markers.map(marker => (<LibraryDetail listView libraryInfo={marker} key={marker.id} loading="lazy" />))}
       </div>
     </>
   )
