@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { getStorage, ref, getDownloadURL } from "firebase/storage"; // temp
-import { Button } from 'react-bootstrap/';
 import { formatDateFromSQL } from '../helpers/dateHelpers';
 import axios from 'axios';
 
@@ -78,14 +77,20 @@ const LibraryDetail = ({ libraryInfo }) => {
   }
 
   return (
-    <div className="libraryDetails">
-      {selectedImageUrl && <img src={selectedImageUrl} alt="photo of library" />}
-      <p>{libraryInfo.address}</p>
-      {token && <Button onClick={handleClick}>Record Visit</Button>}
-      {token && countByUser && <p>You have visited {countByUser} {formatCountableNoun("time", countByUser)}.</p>}
-      {token && lastVisitByUser && <p>Last visit was: {formatDateFromSQL(lastVisitByUser)}</p>}
-      <p>All users have visited {count} {formatCountableNoun("time", count)}.</p>
-      {!token && !selectedImageUrl && <p>No photos!</p>}
+    <div className="library-detail">
+      <h4 className="library-detail-address">{libraryInfo.address}</h4>
+      {selectedImageUrl && <img className="library-detail-image" src={selectedImageUrl} alt="photo of library" />}
+      {!token && !selectedImageUrl && <p className="library-detail-image">No photos!</p>}
+      <div className="library-detail-visit">
+          <p>{token && countByUser && `You have visited ${countByUser} ${formatCountableNoun("time", countByUser)}.`}</p>
+          <p>{token && lastVisitByUser && `Last visit: ${formatDateFromSQL(lastVisitByUser)}.`}</p>
+          <p className='library-detail-visit-spacer'>&nbsp;</p>
+          <p>In total, this library has been visted {count} {formatCountableNoun("time", count)}.</p>
+        
+      </div>
+      
+      {token && <button className="button-small" onClick={handleClick}>Record Visit</button>}
+      
       {!token && !selectedImageUrl && <Link to="/login"> Login</Link>}
       {token && !selectedImageUrl && <Link to="/upload" state={{ libraryId }}>Upload image</Link>}
     </div>

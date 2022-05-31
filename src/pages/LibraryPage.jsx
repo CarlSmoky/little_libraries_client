@@ -17,7 +17,7 @@ const LibraryPage = () => {
 
   let mapContainerStyleForDetailPage = {
     width: '100%',
-    height: '600px'
+    height: '616px'
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const LibraryPage = () => {
       })
     }, [id]);
   return (
-    <div className="libraryContainer">
+    <div className="library-page">
       <LibraryDetail libraryInfo={libraryInfo}/>
       <Map id={id} showSearch={false} mapStyle={mapContainerStyleForDetailPage}/>
     </div>
