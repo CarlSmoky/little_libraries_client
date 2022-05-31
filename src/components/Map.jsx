@@ -16,7 +16,7 @@ import lightFormat from 'date-fns/lightFormat';
 
 let mapContainerStyleForFullMap = {
   width: '100%',
-  height: '600px'
+  height: '300px'
 };
 
 const options = {
