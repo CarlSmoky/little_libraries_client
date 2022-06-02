@@ -24,7 +24,7 @@ const AuthProvider = props => {
   const firebaseSignOut = () => {
     const auth = getAuth();
     signOut(auth).then(() => {
-      console.log("firebase logged out");
+      // console.log("firebase logged out");
     }).catch((error) => {
       console.log("firebase failed to log out");
     });
