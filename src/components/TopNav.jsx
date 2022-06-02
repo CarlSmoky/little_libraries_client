@@ -2,23 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import { authContext } from '../providers/AuthProvider';
 import { displayNavContext } from '../providers/DisplayNavProvider';
-import { getAuth, signOut } from "firebase/auth";
 import { timestampIsFresh } from '../helpers/dateHelpers';
 
 export default function TopNav() {
   const navigate = useNavigate();
-  const { user, resetUserInfo } = useContext(authContext);
+  const { user, resetUserInfo, firebaseSignOut } = useContext(authContext);
   const { showing, setShowing, closeNavBar } = useContext(displayNavContext);
-  // const [showing, setShowing] = useState(false);
-
-  const firebaseSignOut = () => {
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      console.log("firebase logged out");
-    }).catch((error) => {
-      console.log("firebase failed to log out");
-    });
-  }
 
   const logoutHandler = () => {
     localStorage.removeItem("token");
@@ -44,9 +33,6 @@ export default function TopNav() {
     }
   }, []);
 
-  // const closeNavBar = () => {
-  //   setShowing(false);
-  // }
 
   return (
     <div>
