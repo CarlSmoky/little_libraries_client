@@ -25,11 +25,11 @@ const Footer = (props) => {
     navigate("/");
   };
 
-
-
   useEffect(() => {
     if (user) {
       setFirstName(user.firstName);
+    } else {
+      setFirstName(null);
     }
   }, [user])
 
