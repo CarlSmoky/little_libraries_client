@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import { authContext } from '../providers/AuthProvider';
+import { displayNavContext } from '../providers/DisplayNavProvider';
 import { getAuth, signOut } from "firebase/auth";
 import { timestampIsFresh } from '../helpers/dateHelpers';
 
 export default function TopNav() {
   const navigate = useNavigate();
   const { user, resetUserInfo } = useContext(authContext);
-  const [showing, setShowing] = useState(false);
+  const { showing, setShowing, closeNavBar } = useContext(displayNavContext);
+  // const [showing, setShowing] = useState(false);
 
   const firebaseSignOut = () => {
     const auth = getAuth();
@@ -42,15 +44,15 @@ export default function TopNav() {
     }
   }, []);
 
-  const closeNavBar = () => {
-    setShowing(false);
-  }
+  // const closeNavBar = () => {
+  //   setShowing(false);
+  // }
 
   return (
     <div>
       <nav>
         <div className="nav-header">
-        <Link to="/" onClick={closeNavBar}><img src="/logo-png.png" className="logo" alt="logo" /></Link>
+        <Link to="/" onClick={closeNavBar}><img src="/logo.png" className="logo" alt="logo" /></Link>
           <button className={`nav-toggle 
           ${showing ? "nav-toggle-vertical" : "nav-toggle-horizontal"}`
         } onClick={() => setShowing(!showing)}>

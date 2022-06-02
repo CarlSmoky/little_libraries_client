@@ -5,24 +5,27 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MarkerProvider from './providers/MarkerProvider'
 import AuthProvider from './providers/AuthProvider';
+import DisplayNavProvider from './providers/DisplayNavProvider';
 import axios from "axios";
 
 // axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
-axios.defaults.baseURL = "https://little-libraries-jk.herokuapp.com/"
+// axios.defaults.baseURL = "https://little-libraries-jk.herokuapp.com/"
 
 // if (process.env.REACT_APP_API_BASE_URL) {
 //   axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 // } else {
-//   axios.defaults.baseURL =  "http://localhost:3001/"
+axios.defaults.baseURL = "http://localhost:3001/"
 // }
 
 ReactDOM.render(
   <React.StrictMode>
-    <MarkerProvider>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </MarkerProvider>
+    <DisplayNavProvider>
+      <MarkerProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </MarkerProvider>
+    </DisplayNavProvider> 
   </React.StrictMode>,
   document.getElementById('root')
 );
