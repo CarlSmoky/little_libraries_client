@@ -14,6 +14,7 @@
   --input-focus: #6BA368;
 }
 
+/* top level */
 *,
 ::after,
 ::before {
@@ -33,8 +34,18 @@ body {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+}
 
-/* top level */
+a:link,
+a:hover,
+a:visited,
+a:active {
+text-decoration: inherit;
+color: inherit;
+}
+
 .App {
   text-align: center;
 }
@@ -43,19 +54,12 @@ body {
   position: relative;
 }
 
-/* @media (max-height:800px){
-	footer { position: static; }
-	header { padding-top:40px; }
-} */
-
+/* footer */
 .footer {
   background-color: var(--mid);
   width: 100%;
 }
 
-footer p {
-  color: var(--mid);
-}
 .footer-distributed{
 	background-color: var(--mid);
 	box-sizing: border-box;
@@ -74,18 +78,18 @@ footer p {
 
 /* Footer left */
 .footer-distributed .footer-left{
-	width: 30%;
+	width: 40%;
 }
 
 .footer-distributed h3{
-	color:  #ffffff;
-	font: normal 36px 'Cookie', cursive;
+	color:  #eee;
+	font: normal 36px var(--ff-primary), cursive;
 	margin: 0;
 }
 
 /* The company logo */
 .footer-distributed .footer-left img{
-	width: 30%;
+	width: 200px;
 }
 
 .footer-distributed h3 span{
@@ -95,7 +99,7 @@ footer p {
 /* Footer links */
 .footer-distributed .footer-links{
 	color: var(--light);
-	margin: 20px 0 12px;
+	margin: 0 0 12px;
 }
 
 .footer-distributed .footer-links a{
@@ -106,7 +110,8 @@ footer p {
 }
 
 .footer-distributed .footer-company-name{
-	color:  #8f9296;
+	color:  var(--light);
+  filter: brightness(85%);
 	font-size: 14px;
 	font-weight: normal;
 	margin: 0;
@@ -114,46 +119,8 @@ footer p {
 
 /* Footer Center */
 .footer-distributed .footer-center{
-	width: 35%;
+	width: 30%;
 }
-
-.footer-distributed .footer-center i{
-	background-color:  #33383b;
-	color: #ffffff;
-	font-size: 25px;
-	width: 38px;
-	height: 38px;
-	border-radius: 50%;
-	text-align: center;
-	line-height: 42px;
-	margin: 10px 15px;
-	vertical-align: middle;
-}
-
-.footer-distributed .footer-center i.fa-envelope{
-	font-size: 17px;
-	line-height: 38px;
-}
-
-.footer-distributed .footer-center p{
-	display: inline-block;
-	color: #ffffff;
-	vertical-align: middle;
-	margin:0;
-}
-
-.footer-distributed .footer-center p span{
-	display:block;
-	font-weight: normal;
-	font-size:14px;
-	line-height:2;
-}
-
-.footer-distributed .footer-center p a{
-	color:  #e0ac1c;
-	text-decoration: none;;
-}
-
 
 /* Footer Right */
 .footer-distributed .footer-right{
@@ -162,15 +129,20 @@ footer p {
 
 .footer-distributed .footer-company-about{
 	line-height: 20px;
-	color:  #92999f;
+	color:  var(--light);
 	font-size: 13px;
 	font-weight: normal;
 	margin: 0;
 }
 
+.footer-distributed .footer-company-about p{
+  color:  var(--light);
+  filter: brightness(85%);
+}
+
 .footer-distributed .footer-company-about span{
 	display: block;
-	color:  #ffffff;
+	color:  var(--light);
 	font-size: 18px;
 	font-weight: bold;
 	margin-bottom: 20px;
@@ -185,37 +157,16 @@ footer p {
 	width: 35px;
 	height: 35px;
 	cursor: pointer;
-	background-color:  #33383b;
+	background-color: var(--light);
+  filter: brightness(65%);
 	border-radius: 2px;
 
 	font-size: 20px;
 	color: #ffffff;
 	text-align: center;
 	line-height: 35px;
-
 	margin-right: 3px;
 	margin-bottom: 5px;
-}
-
-/* Here is the code for Responsive Footer */
-/* You can remove below code if you don't want Footer to be responsive */
-
-
-@media (max-width: 880px) {
-
-	.footer-distributed .footer-left,
-	.footer-distributed .footer-center,
-	.footer-distributed .footer-right{
-		display: block;
-		width: 100%;
-		margin-bottom: 40px;
-		text-align: center;
-	}
-
-	.footer-distributed .footer-center i{
-		margin-left: 0;
-	}
-
 }
 
 /* form */
@@ -240,8 +191,7 @@ footer p {
   margin-top: 1rem;
 }
 
-/* library details */
-
+/* library page */
 .library-page {
   display: flex;
 }
@@ -278,7 +228,7 @@ footer p {
   margin: 1rem 0 1rem 1.9rem;
 }
 
-
+/* nav */
 .nav-header {
   display: flex;
   flex-direction: row;
@@ -291,10 +241,6 @@ footer p {
   background-color: var(--light);
   box-shadow: var(--nav-shadow);
   border-bottom: solid var(--mid) .1px;
-}
-
-ul {
-  list-style-type: none;
 }
 
 .links {
@@ -322,31 +268,6 @@ ul {
   color: var(--light);
   padding-left: 1.5rem;
 }
-
-/* .library-detail {
-  background-color: var(--mid);
-  width: 90%;
-} */
-
-/* .library-detail-address {
-  color: var(--light);
-  padding: 1rem;
-  font-size: 1.5rem;
-} */
-
-/* .library-detail-image {
-  width: 90%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 2%;
-  margin: 0 1rem;
-  transition: all .3s;
-} */
-
-/* .library-detail-image:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--dark-shadow)
-} */
 
 .library-detail-visit {
   color: var(--light);
@@ -451,7 +372,7 @@ ul {
   max-width: 35rem;
 }
 
-.login-form>h2, .signUp-form>h2 {
+.login-form > h2, .signUp-form>h2 {
   color: var(--mid);
   padding-bottom: 1rem;
 }
@@ -548,20 +469,6 @@ ul {
   box-shadow: var(--light-shadow);
 }
 
-/* .button-small {
-  cursor: pointer;
-  background: var(--dark);
-  width: 8rem;
-  padding: 10px 15px;
-  border: 0;
-  color: var(--light);
-  font-size: 1rem;
-  font-weight: 400;
-  transition: all .1s ease-in-out ;
-  border-radius: 4px;
-  margin: 1rem 0 1rem 0;
-} */
-
 .button-small:hover {
   transform: translateY(-3px);
   box-shadow: var(--dark-shadow);
@@ -609,7 +516,6 @@ table {
 }
 
 /* Library List Item Cell */
-
 .library-list-item {
   display: flex;
   justify-content: flex-start;
@@ -665,14 +571,6 @@ table {
   margin-bottom: 3rem;;
 }
 
-a:link,
-a:hover,
-a:visited,
-a:active {
-text-decoration: inherit;
-color: inherit;
-}
-
 .mostFrequentlyVisitedLibrary {
   margin: 0 auto;
 }
@@ -686,6 +584,22 @@ color: inherit;
 
   body {
     height: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  /* footer */
+  .footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+  .footer-distributed .footer-left h3 {
+    text-align: center;
   }
 }
 
