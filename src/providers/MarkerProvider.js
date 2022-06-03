@@ -1,5 +1,6 @@
 import axios from 'axios';
-const { useState, createContext, useEffect } = require("react");
+import React, { createContext, useState, useEffect } from 'react';
+// const { useState, createContext, useEffect } = require("react");
 
 export const markerContext = createContext();
 

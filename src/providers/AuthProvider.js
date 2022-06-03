@@ -1,6 +1,6 @@
-// import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { getAuth, signOut } from "firebase/auth";
-const { useState, createContext } = require("react");
+// const { useState, createContext } = require("react");
 
 export const authContext = createContext();
 
