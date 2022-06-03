@@ -370,6 +370,7 @@ ul {
   margin: 4% auto;
   width: 80%;
   max-width: 35rem;
+  height: 350px;
 }
 
 .login-form > h2, .signUp-form>h2 {
