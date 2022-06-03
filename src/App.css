@@ -525,7 +525,7 @@ table {
   margin: 0.5rem;
 }
 
-.library-list-item p, h3 {
+.library-list-item p, .library-list-item h3 {
   text-align: left;
   color: var(--light);
   line-height: 1rem;
