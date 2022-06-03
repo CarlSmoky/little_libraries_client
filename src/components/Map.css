@@ -34,9 +34,17 @@ h1 {
 }
 
 .search input {
+  outline: none;
   padding: 0.5rem;
   font-size: 1rem;
   width: 100%;
+  transition: var(--transition);
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search input:focus {
+  border-color: var(--input-focus);
 }
 
 .locate {
