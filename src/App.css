@@ -479,13 +479,11 @@ ul {
   color: #ccc;
   box-sizing: border-box;
   font-size: 1rem;
-  transition: 0.2s linear;
+  transition: var(--transition);
   border-radius: 4px;
 }
 
 .input-container input:focus {
-  color: #333;
-  border: 1px solid #44c4e7;
   border-color: var(--input-focus);
 }
 
