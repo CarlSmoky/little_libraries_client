@@ -1,9 +1,6 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.x"
-  },
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
