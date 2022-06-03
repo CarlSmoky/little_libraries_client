@@ -75,8 +75,14 @@ const LibraryForm = () => {
       </form>}
       <p>{errorMessage}</p>
       {errorMessage && <Link to={"/login"}><button className="button-basic">Login</button></Link>}
-      {!token && <Link to={"/login"}><button className="button-basic">Login</button></Link>}
-        {libraryId && <ImageLoadTest libraryId={libraryId}/>}
+      {!token &&
+        <>
+          <p>To resister a library, you need to login to resister.</p>
+          <Link to={"/login"}><button className="button-basic">Login</button></Link>
+          <Link to={"/signup"}><button className="button-basic">Sign Up</button></Link>
+        </>
+      }
+      {libraryId && <ImageLoadTest libraryId={libraryId} />}
     </div>
   )
 }
