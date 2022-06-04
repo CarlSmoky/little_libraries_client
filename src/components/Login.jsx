@@ -2,8 +2,9 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { authContext } from '../providers/AuthProvider';
-import { Auth, getAuth } from 'firebase/auth';
-import { postLoginProcedure } from '../helpers/login-helpers'
+// import { Auth, getAuth } from 'firebase/auth';
+import { postLoginProcedure } from '../helpers/login-helpers';
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -74,6 +75,7 @@ const Login = () => {
           <div className="button-container">
             <button className="button-basic" form="login-form" type="submit">Log In</button>
           </div>
+          <p className="link_to_login">No account? <Link to="/signup">Sign Up</Link></p>
         </form>
       </div>
     )

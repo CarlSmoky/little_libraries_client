@@ -52,7 +52,7 @@ export default function TopNav() {
             <Link to="/" onClick={closeNavBar}>Home</Link>
           </li>
           <li>
-            <Link to="/aboutus" onClick={closeNavBar}>About Us</Link>
+            <Link to="/aboutus" onClick={closeNavBar}>Tips & Usage</Link>
           </li>
           {!token &&
             <li>

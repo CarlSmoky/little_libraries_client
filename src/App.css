@@ -623,6 +623,12 @@ table {
   text-indent: -1rem;
 }
 
+/* User page */
+.page-wrapper {
+  min-height: 60vh;
+  margin-top: 2rem;
+}
+
 /* full screen */
 
 @media screen and (min-width: 501px) {
