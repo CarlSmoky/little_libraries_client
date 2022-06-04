@@ -11,6 +11,7 @@ import Login from './components/Login';
 import ImageLoadTest from './components/ImageLoadTest';
 import LibraryForm from './components/LibraryForm';
 import LibraryPage from './pages/LibraryPage';
+import SearchPage from './pages/SearchPage';
 import UserPage from './pages/UserPage';
 import ScrollToTop from "./ScrollToTop";
 
@@ -30,6 +31,7 @@ export default function App() {
         <Route path ="/library/:id" element={<LibraryPage />}/>
         <Route path ="/aboutus" element={<AboutUs />}/>
         <Route path ="/userpage" element={<UserPage />}/>
+        <Route path ="/search" element={<SearchPage />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

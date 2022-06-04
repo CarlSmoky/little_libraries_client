@@ -51,6 +51,9 @@ const Footer = (props) => {
           <Link to="/aboutus" onClick={closeNavBar}>Tips & Usage</Link>
         </div>
         <div>
+          <Link to="/search" onClick={closeNavBar}>All Libraries</Link>
+        </div>
+        <div>
           {firstName && <Link to="/userpage" onClick={closeNavBar}>{firstName}'s Page</Link>}
         </div>
         <div>

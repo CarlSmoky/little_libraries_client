@@ -4,7 +4,7 @@ import { formatDateFromSQL } from '../helpers/dateHelpers';
 
 const LibraryListItem = (props) => {
   return (
-    <Link to={`/library/${props.id}`}>  
+    <Link to={`/library/${props.id}`}>
       <div className='library-list-item'>
         <div className="library-list-item__image">
           <img src={props.imageUrl} alt='little library image'/>
@@ -15,7 +15,7 @@ const LibraryListItem = (props) => {
           </div>
           <div className="library-list-item__details--bottom">
             <p>{props.count} visits</p>
-            <p>Last visit: {formatDateFromSQL(props.lastVisited)} </p>
+            {props.lastVisited && <p>Last visit: {formatDateFromSQL(props.lastVisited)} </p>}
           </div>
         </div>
       </div>

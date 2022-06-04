@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import LibraryListItem from './LibraryListItem';
 
-const LibraryList = () => {
+const LibraryList = ({ endpointKey }) => {
   const [displayedLibraries, setDisplayedLibraries] = useState([]);
   const mostFrequentlyVisited = useRef();
   const displayCount = useRef(10);
@@ -13,9 +13,11 @@ const LibraryList = () => {
     const token = localStorage.getItem("token");
     const headers = { "x-access-token": token, };
     const endpoints = {
-      "USER": `api/users/libraries`
+      "USER": `api/users/libraries`,
+      "ALL_LIBRARIES": `api/libraries/all`
     }
-    axios.post(endpoints.USER, '', { headers })
+
+    axios.post(endpoints[endpointKey], '', { headers })
       .then(response => {
         mostFrequentlyVisited.current = response.data;
         setDisplayedLibraries(mostFrequentlyVisited.current.slice(0, displayCount.current));
@@ -52,7 +54,6 @@ const LibraryList = () => {
   return (
     <div className="libraryListForUser">
       <div className="mostFrequentlyVisitedLibrary">
-        <h2>Most Frequently Visited Libraries</h2>
         { topLibraries }
       </div>
       { displayShowMoreButton() &&
