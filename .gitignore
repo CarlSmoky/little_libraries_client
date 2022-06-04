@@ -76,4 +76,5 @@ typings/
 # misc
 .DS_Store
 little-libraries-ea3cb-firebase-adminsdk-fpx0i-c01c866eaa.json
+*src/index.js
 
