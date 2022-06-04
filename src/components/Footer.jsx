@@ -48,7 +48,7 @@ const Footer = (props) => {
           <Link to="/" onClick={closeNavBar}>Home</Link>
         </div>
         <div>
-          <Link to="/" onClick={closeNavBar}>Search</Link>
+          <Link to="/aboutus" onClick={closeNavBar}>Tips & Usage</Link>
         </div>
         <div>
           {firstName && <Link to="/userpage" onClick={closeNavBar}>{firstName}'s Page</Link>}
@@ -65,7 +65,7 @@ const Footer = (props) => {
       </div>
       <div class="footer-right">
         <div class="footer-company-about">
-          <span><Link to="/aboutus" onClick={closeNavBar}>About us</Link></span>
+          <span>About us</span>
           <p>Collecting little libraries since some time in April 2022!
           </p>
           </div>
