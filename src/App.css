@@ -312,7 +312,7 @@ ul {
 }
 
 .show-links {
-  height: 10rem;
+  height: 12rem;
   margin: 0;
   padding: 0;
 }
@@ -626,7 +626,7 @@ table {
 /* User page */
 .page-wrapper {
   min-height: 60vh;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 /* full screen */

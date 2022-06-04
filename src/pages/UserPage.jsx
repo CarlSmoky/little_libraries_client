@@ -13,7 +13,8 @@ const UserPage = () => {
 
   return (
     <div className="page-wrapper">
-      <LibraryList />
+      <h2>Most Frequently Visited Libraries</h2>
+      <LibraryList endpointKey="USER"/>
     </div>
   )
 }

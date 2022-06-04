@@ -54,6 +54,9 @@ export default function TopNav() {
           <li>
             <Link to="/aboutus" onClick={closeNavBar}>Tips & Usage</Link>
           </li>
+          <li>
+            <Link to="/search" onClick={closeNavBar}>All Libraries</Link>
+          </li>
           {!token &&
             <li>
               <Link to="/login" onClick={closeNavBar}>Log In</Link>
@@ -74,7 +77,6 @@ export default function TopNav() {
               <Link to="/" onClick={logoutHandler}>Logout</Link>
             </li>
           }
-
         </ul>
       </nav >
     </div >
