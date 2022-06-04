@@ -74,11 +74,11 @@ const LibraryForm = () => {
         </div>
       </form>}
       <p>{errorMessage}</p>
-      {errorMessage && <Link to={"/login"}><button className="button-basic">Login</button></Link>}
+      {errorMessage && <Link to={"/login"}><button className="button-basic">Log in</button></Link>}
       {!token &&
         <>
-          <p>To resister a library, you need to login.</p>
-          <Link to={"/login"}><button className="button-basic">Login</button></Link>
+          <p>To resister a library, you need to log in.</p>
+          <Link to={"/login"}><button className="button-basic">Log In</button></Link>
           <Link to={"/signup"}><button className="button-basic">Sign Up</button></Link>
         </>
       }

@@ -12,7 +12,7 @@ export default function SignUp() {
   const { setUserInfo } = useContext(authContext);
   const [errorMessages, setErrorMessages] = useState({});
   // const allowsSignUp = (process.env.REACT_APP_ALLOW_SIGN_UP === 'true');
-  const allowsSignUp = false;
+  const allowsSignUp = true;
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -133,17 +133,16 @@ export default function SignUp() {
                 required
               />
             </div>
-            {"Valiation"}
             <div className="button-container">
             <input type="submit" />
             </div>
-            <p className="link_to_login">Have already an account? <Link to="/login"> Login</Link></p>
+            <p className="link_to_login">Have already an account? <Link to="/login"> Log In</Link></p>
           </form>
         </section>
         :
         <div>
           <div className="signUp-form" >
-            <h2 className="text-uppercase text-center mb-5">Sorry, sign up is currently disabled</h2>
+            <h2 className="text-uppercase text-center mb-5">Sorry, signup is currently disabled</h2>
           </div>
         </div>
       }

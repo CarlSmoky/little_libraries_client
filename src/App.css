@@ -1,5 +1,7 @@
 :root {
   --dark: #382633;
+  --mid3: #23b5d3;
+  --mid2: #d36135;
   --mid: #5c5c5d;
   --light: #eadacd;
   --transition: all 0.3s linear;
@@ -82,7 +84,7 @@ color: inherit;
 }
 
 .footer-distributed h3{
-	color:  #eee;
+	color:  var(--light);
 	font: normal 36px var(--ff-primary), cursive;
 	margin: 0;
 }
@@ -93,7 +95,7 @@ color: inherit;
 }
 
 .footer-distributed h3 span{
-	color:  var(--light);
+	color:  var(--dark);
 }
 
 /* Footer links */
@@ -367,10 +369,11 @@ ul {
 }
 
 .login-form, .signUp-form {
-  margin: 4% auto;
+  margin: 4% auto 2rem auto;
   width: 80%;
   max-width: 35rem;
-  height: 350px;
+  min-height: 57vh;
+  max-height: 62vh;
 }
 
 .login-form > h2, .signUp-form>h2 {
@@ -381,6 +384,10 @@ ul {
 .signUp-form__label {
   color: var(--mid);
   text-align: left;
+}
+
+.link_to_login a {
+  color: var(--dark);
 }
 
 .error {
@@ -403,6 +410,12 @@ ul {
   font-size: 1rem;
   transition: var(--transition);
   border-radius: 4px;
+  margin-bottom: 0.6rem;
+}
+
+.link_to_login {
+  margin-top: 1rem;
+  padding-bottom: 2rem;
 }
 
 .input-container input:focus {
@@ -415,12 +428,13 @@ ul {
   width: 100%;
   padding: 10px 15px;
   border: 0;
-  color: #fff;
+  color: var(--light);
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1rem;
   transition: all .1s ease-in-out ;
-  border-radius: 4px;
+  border-radius: 3px;
+  height: 2.5rem;
 }
 
 .button-container input:hover {
@@ -574,6 +588,31 @@ table {
 
 .mostFrequentlyVisitedLibrary {
   margin: 0 auto;
+}
+
+/* FAQ */
+.faq {
+  margin: 2rem 10% 0 10%;
+}
+
+.faq h3, .faq ul {
+  text-align: left;
+  max-width: 60rem;
+}
+
+.faq h2 {
+  margin-bottom: 2rem;
+}
+
+.faq h3 {
+  font-size: 1.2rem;
+}
+
+.faq ul {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  text-indent: -1rem;
 }
 
 /* full screen */

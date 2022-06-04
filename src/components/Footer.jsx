@@ -38,10 +38,9 @@ const Footer = (props) => {
     <footer class="footer-distributed">
 
       <div class="footer-left">
-        <img src="/logo.png"></img>
         <h3>Little<span>Libraries</span></h3>
 
-        <p class="footer-company-name">© {year} Little libraries by J&K</p>
+        <p class="footer-company-name">© {year} Little Libraries by K & J</p>
       </div>
 
       <div class="footer-center footer-links">
@@ -67,7 +66,7 @@ const Footer = (props) => {
       <div class="footer-right">
         <div class="footer-company-about">
           <span><Link to="/aboutus" onClick={closeNavBar}>About us</Link></span>
-          <p>We offer training and skill building courses across Technology, Design, Management, Science and Humanities.
+          <p>Collecting little libraries since some time in April 2022!
           </p>
           </div>
         <div class="footer-icons">
