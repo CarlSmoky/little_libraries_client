@@ -69,7 +69,7 @@ export default function SignUp() {
         <section className="signUp-form" >
           {/* <div className="mask d-flex align-items-center h-100 gradient-custom-3"> */}
           <h2>Create an account</h2>
-          <form onSubmit={handleSubmitClick}>
+          <form onSubmit={handleSubmitClick} id='signup-form'>
             <div className="input-container">
               <label className="signUp-form__label">First name</label>
               <input
@@ -133,9 +133,12 @@ export default function SignUp() {
                 required
               />
             </div>
-            <div className="button-container">
+            {/* <div className="button-container">
             <input type="submit" />
-            </div>
+            </div> */}
+            <div className="button-container">
+            <button className="button-basic" form="signup-form" type="submit">Sign Up</button>
+          </div>
             <p className="link_to_login">Have already an account? <Link to="/login"> Log In</Link></p>
           </form>
         </section>
