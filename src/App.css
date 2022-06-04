@@ -576,6 +576,31 @@ table {
   margin: 0 auto;
 }
 
+/* FAQ */
+.faq {
+  margin: 2rem 10% 0 10%;
+}
+
+.faq h3, .faq ul {
+  text-align: left;
+  max-width: 60rem;
+}
+
+.faq h2 {
+  margin-bottom: 2rem;
+}
+
+.faq h3 {
+  font-size: 1.2rem;
+}
+
+.faq ul {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  text-indent: -1rem;
+}
+
 /* full screen */
 
 @media screen and (min-width: 501px) {

@@ -47,7 +47,7 @@ const Login = () => {
 
     return (
       <div className="login-form">
-        <h2>Login</h2>
+        <h2>Log In</h2>
         <form id="login-form" onSubmit={handleSubmit}>
           <div className="input-container">
             {/* <label>Email address </label> */}
@@ -72,7 +72,7 @@ const Login = () => {
             {renderErrorMessage("password")}
           </div>
           <div className="button-container">
-            <button className="button-basic" form="login-form" type="submit">Login</button>
+            <button className="button-basic" form="login-form" type="submit">Log In</button>
           </div>
         </form>
       </div>

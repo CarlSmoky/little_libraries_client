@@ -86,12 +86,12 @@ const LibraryDetail = ({ libraryInfo }) => {
           <p>{token && lastVisitByUser && `Last visit: ${formatDateFromSQL(lastVisitByUser)}.`}</p>
           <p className='library-detail-visit-spacer'>&nbsp;</p>
           <p>In total, this library has been visted {count} {formatCountableNoun("time", count)}.</p>
-        
+
       </div>
-      
+
       {token && <button className="button-small" onClick={handleClick}>Record Visit</button>}
-      
-      {!token && !selectedImageUrl && <Link to="/login"> Login</Link>}
+
+      {!token && !selectedImageUrl && <Link to="/login"> Log In</Link>}
       {token && !selectedImageUrl && <Link to="/upload" state={{ libraryId }}>Upload image</Link>}
     </div>
   )

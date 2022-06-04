@@ -137,13 +137,13 @@ export default function SignUp() {
             <div className="button-container">
             <input type="submit" />
             </div>
-            <p className="link_to_login">Have already an account? <Link to="/login"> Login</Link></p>
+            <p className="link_to_login">Have already an account? <Link to="/login"> Log In</Link></p>
           </form>
         </section>
         :
         <div>
           <div className="signUp-form" >
-            <h2 className="text-uppercase text-center mb-5">Sorry, sign up is currently disabled</h2>
+            <h2 className="text-uppercase text-center mb-5">Sorry, signup is currently disabled</h2>
           </div>
         </div>
       }

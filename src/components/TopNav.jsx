@@ -39,13 +39,13 @@ export default function TopNav() {
       <nav>
         <div className="nav-header">
         <Link to="/" onClick={closeNavBar}><img src="/logo.png" className="logo" alt="logo" /></Link>
-          <button className={`nav-toggle 
+          <button className={`nav-toggle
           ${showing ? "nav-toggle-vertical" : "nav-toggle-horizontal"}`
         } onClick={() => setShowing(!showing)}>
             <i className="fas fa-bars"></i>
           </button>
         </div>
-        <ul className={`links 
+        <ul className={`links
           ${showing ? "show-links" : ""}
         `}>
           <li>
@@ -56,7 +56,7 @@ export default function TopNav() {
           </li>
           {!token &&
             <li>
-              <Link to="/login" onClick={closeNavBar}>Login</Link>
+              <Link to="/login" onClick={closeNavBar}>Log In</Link>
             </li>
           }
           {!token &&
