@@ -371,11 +371,10 @@ ul {
 }
 
 .login-form, .signUp-form {
-  margin: 4% auto 2rem auto;
+  margin: 4% auto 5rem auto;
   width: 80%;
   max-width: 35rem;
   min-height: 57vh;
-  max-height: 62vh;
 }
 
 .login-form label, .signUp-form label {
