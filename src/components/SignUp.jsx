@@ -12,7 +12,7 @@ export default function SignUp() {
   const { setUserInfo } = useContext(authContext);
   const [errorMessages, setErrorMessages] = useState({});
   // const allowsSignUp = (process.env.REACT_APP_ALLOW_SIGN_UP === 'true');
-  const allowsSignUp = false;
+  const allowsSignUp = true;
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -133,7 +133,6 @@ export default function SignUp() {
                 required
               />
             </div>
-            {"Valiation"}
             <div className="button-container">
             <input type="submit" />
             </div>

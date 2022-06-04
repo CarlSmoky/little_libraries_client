@@ -38,7 +38,6 @@ const Footer = (props) => {
     <footer class="footer-distributed">
 
       <div class="footer-left">
-        <img src="/logo.png"></img>
         <h3>Little<span>Libraries</span></h3>
 
         <p class="footer-company-name">© {year} Little Libraries by K & J</p>
