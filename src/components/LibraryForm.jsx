@@ -56,26 +56,29 @@ const LibraryForm = () => {
   return (
     <div className="login-form">
       <h2>Register New Library</h2>
-      {token && <form onSubmit={handleSubmit} id='register-library-form'>
-        <div className="input-container">
-          {/* <label>Email address </label> */}
-          <input
-            type="text"
-            name="address"
-            placeholder='address or name'
-            onChange={onChange}
-            value={formData.address}
-            required
-            disabled={libraryId}
-          />
-        </div>
-        {/* <div className="button-container">
-          {!libraryId && <input type="submit" />}
-        </div> */}
-        <div className="button-container">
-            <button className="button-basic" form="lregister-library-form" type="submit">Submit</button>
+      {token &&
+        <>
+        <form id='register-library-form' onSubmit={handleSubmit}>
+          <div className="input-container">
+            {/* <label>Email address </label> */}
+            <input
+              type="text"
+              name="address"
+              placeholder='address or name'
+              onChange={onChange}
+              value={formData.address}
+              required
+              disabled={libraryId} />
           </div>
-      </form>}
+          {/* <div className="button-container">
+      {!libraryId && <input type="submit" />}
+    </div> */}
+        </form>
+          {!libraryId && <div className="button-container">
+            <button className="button-basic" form="register-library-form" type="submit">Submit</button>
+          </div>}
+        </>
+      }
       <p>{errorMessage}</p>
       {errorMessage && <Link to={"/login"}><button className="button-basic">Log in</button></Link>}
       {!token &&
