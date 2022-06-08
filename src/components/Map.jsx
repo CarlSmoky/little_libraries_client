@@ -140,7 +140,7 @@ const Map = ({ id, showSearch, mapStyle }) => {
     console.log("in addImageURL", imageURL);
     axios.post(endpoints.LOGIN, {id, imageURL})
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         // navigate('/')
       })
       .catch(err => {
@@ -177,12 +177,14 @@ const Map = ({ id, showSearch, mapStyle }) => {
             }}
             onClick={() => {
               setSelected(marker);
-              console.log("MAP: marker object", marker);
+              // console.log("MAP: marker object", marker);
               const storage = getStorage();
               if (marker.imageURL) {
                 setSelectedImageUrl(marker.imageURL);
-                console.log("MAP: we already have the url");
+                // console.log("MAP: we already have the url");
               } else {
+                // TODO: refactor this logic so it can be used directly when uploading a new image
+                // getDownloadURL and addImageURL need to be available elsewhere
                 getDownloadURL(ref(storage, `images/${marker.id}.jpg`))
                 .then(url => {
                   console.log("MAP: we had to fetch the URL");
