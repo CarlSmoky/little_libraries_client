@@ -14,15 +14,12 @@ const LibraryDetail = ({ libraryInfo }) => {
   const [lastVisitByUser, setLastVisitByUser] = useState("");
   const token = localStorage.getItem("token");
 
-  if (libraryInfo.id) {
-    getDownloadURL(ref(storage, `images/${libraryInfo.id}.jpg`))
-      .then(url => {
-        setSelectedImageUrl(url);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
+  useEffect(() => {
+    if (libraryInfo.id) {
+      setSelectedImageUrl(libraryInfo.image_url)
+    }
+  },[libraryInfo]);
+  
   useEffect(() => {
     if (!token) {
       //When user not logged in

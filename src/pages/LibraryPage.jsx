@@ -12,7 +12,7 @@ const LibraryPage = () => {
     address: '',
     lat: '',
     long: '',
-    img_url: ''}
+    image_url: ''}
     );
 
   let mapContainerStyleForDetailPage = {
@@ -23,9 +23,8 @@ const LibraryPage = () => {
   useEffect(() => {
     axios.get(`api/libraries/${id}`)
       .then(res => {
-        const {id, address, lat, long, img_url } = res.data;
-        setLibraryInfo({id, address, lat, long, img_url})
-
+        const {id, address, lat, long, image_url } = res.data;
+        setLibraryInfo({id, address, lat, long, image_url});
       })
       .catch (err => {
         console.log(err)
