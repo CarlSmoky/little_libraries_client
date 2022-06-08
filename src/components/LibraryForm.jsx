@@ -44,11 +44,14 @@ const LibraryForm = () => {
       .then(response => {
         if (!response.data.auth) {
           setErrorMessage(response.data.message);
-          console.log(errorMessage);
         } else {
           fetchMarkers();
+          setErrorMessage('');
           setLibraryId(response.data.library.id);
         }
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
   const token = localStorage.getItem("token");
@@ -70,17 +73,14 @@ const LibraryForm = () => {
               required
               disabled={libraryId} />
           </div>
-          {/* <div className="button-container">
-      {!libraryId && <input type="submit" />}
-    </div> */}
         </form>
+        <p>{errorMessage}</p>
           {!libraryId && <div className="button-container">
             <button className="button-basic" form="register-library-form" type="submit">Submit</button>
           </div>}
         </>
       }
-      <p>{errorMessage}</p>
-      {errorMessage && <Link to={"/login"}><button className="button-basic">Log in</button></Link>}
+      
       {!token &&
         <>
           <p>To resister a library, you need to log in.</p>
