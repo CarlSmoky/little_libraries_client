@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import firebaseApp from './../Firebase.js'
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { getAuth } from "firebase/auth";
 import { resizeFile, dataURIToBlob } from './../resizeFile.js';
-import firebaseSignIn from '../FirebaseAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
 import axios from 'axios';
 
-export default function ImageLoadTest({libraryId}) {
+export default function ImageLoadTest({libraryId }) {
   const navigate = useNavigate();
-  console.log("current user?", getAuth().currentUser);
+  const location = useLocation();
+  const libId = libraryId ?? location.state.libraryId;
   // Get a reference to the storage service, which is used to create references in your storage bucket
   const storage = getStorage(firebaseApp);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,7 +18,7 @@ export default function ImageLoadTest({libraryId}) {
       "RECORD_VISITS": `api/visits/`
     }
 
-    axios.post(endpoints.RECORD_VISITS, { libraryId }, {
+    axios.post(endpoints.RECORD_VISITS, { libId }, {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       }
@@ -35,9 +34,8 @@ export default function ImageLoadTest({libraryId}) {
       .then(resized => {
         const newFile = dataURIToBlob(resized);
         uploadBytes(storageRef, newFile).then((snapshot) => {
-          console.log('Uploaded a blob or file!');
           addVisitCount();
-          navigate(`/library/${libraryId}`);
+          navigate(`/library/${libId}`);
         });
       })
       .catch(err => {
@@ -47,7 +45,7 @@ export default function ImageLoadTest({libraryId}) {
 
 
   // this creates the firebase ref; use uploadBytes to connect the file to the ref
-  const storageRef = ref(storage, `images/${libraryId}.jpg`);
+  const storageRef = ref(storage, `images/${libId}.jpg`);
   return (
     <div>
       {selectedImage && (

@@ -73,6 +73,11 @@ const LibraryDetail = ({ libraryInfo }) => {
     return count === '1' ? noun : noun + "s";
   }
 
+  const imageUploadLink = {
+    pathname: "/upload", 
+    libraryId
+  }
+
   return (
     <div className="library-detail">
       <h4 className="library-detail-address">{libraryInfo.address}</h4>
@@ -90,7 +95,7 @@ const LibraryDetail = ({ libraryInfo }) => {
       {token && <button className="button-small" onClick={handleClick}>Record Visit</button>}
 
       {!token && !selectedImageUrl && <Link to="/login"> Log In</Link>}
-      {token && !selectedImageUrl && <Link to="/upload" state={{ libraryId }}>Upload image</Link>}
+      {token && !selectedImageUrl && <Link to={imageUploadLink} state={{ libraryId }}>Upload image</Link>}
     </div>
   )
 }
