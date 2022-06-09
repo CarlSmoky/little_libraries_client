@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import firebaseApp from './../Firebase.js'
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { getAuth } from "firebase/auth";
 import { resizeFile, dataURIToBlob } from './../resizeFile.js';
-import firebaseSignIn from '../FirebaseAuth';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation  } from 'react-router-dom';
 import axios from 'axios';
 
 export default function ImageLoadTest({libraryId }) {
@@ -48,7 +45,7 @@ export default function ImageLoadTest({libraryId }) {
 
 
   // this creates the firebase ref; use uploadBytes to connect the file to the ref
-  const storageRef = ref(storage, `images/${libraryId}.jpg`);
+  const storageRef = ref(storage, `images/${libId}.jpg`);
   return (
     <div>
       {selectedImage && (
