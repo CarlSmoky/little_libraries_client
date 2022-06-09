@@ -77,6 +77,7 @@ const LibraryDetail = ({ libraryInfo }) => {
     <div className="library-detail">
       <h4 className="library-detail-address">{libraryInfo.address}</h4>
       {selectedImageUrl && <img className="library-detail-image" src={selectedImageUrl} alt="photo of library" />}
+      {token && !selectedImageUrl && <p className="library-detail-image">No photos!</p>}
       {!token && !selectedImageUrl && <p className="library-detail-image">No photos!</p>}
       <div className="library-detail-visit">
           <p>{token && countByUser && `You have visited ${countByUser} ${formatCountableNoun("time", countByUser)}.`}</p>
