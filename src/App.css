@@ -10,6 +10,7 @@
   --nav-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --card-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   --ff-primary: 'Roboto', sans-serif;
   --ff-secondary: 'Open Sans', sans-serif;
   --red: #F2545B;
@@ -44,8 +45,8 @@ a:link,
 a:hover,
 a:visited,
 a:active {
-text-decoration: inherit;
-color: inherit;
+  text-decoration: inherit;
+  color: inherit;
 }
 
 .App {
@@ -62,115 +63,115 @@ color: inherit;
   width: 100%;
 }
 
-.footer-distributed{
-	background-color: var(--mid);
-	box-sizing: border-box;
-	width: 100%;
-	text-align: left;
-	font: bold 16px sans-serif;
-	padding: 50px 50px 60px 50px;
+.footer-distributed {
+  background-color: var(--mid);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 50px 50px 60px 50px;
   border-top: 1px solid var(--dark);
   z-index: 100;
 }
 
 .footer-distributed .footer-left,
 .footer-distributed .footer-center,
-.footer-distributed .footer-right{
-	display: inline-block;
-	vertical-align: top;
+.footer-distributed .footer-right {
+  display: inline-block;
+  vertical-align: top;
 }
 
 /* Footer left */
-.footer-distributed .footer-left{
-	width: 40%;
+.footer-distributed .footer-left {
+  width: 40%;
 }
 
-.footer-distributed h3{
-	color:  var(--light);
-	font: normal 36px var(--ff-primary), cursive;
-	margin: 0;
+.footer-distributed h3 {
+  color: var(--light);
+  font: normal 36px var(--ff-primary), cursive;
+  margin: 0;
 }
 
 /* The company logo */
-.footer-distributed .footer-left img{
-	width: 200px;
+.footer-distributed .footer-left img {
+  width: 200px;
 }
 
-.footer-distributed h3 span{
-	color:  var(--dark);
+.footer-distributed h3 span {
+  color: var(--dark);
 }
 
 /* Footer links */
-.footer-distributed .footer-links{
-	color: var(--light);
-	margin: 0 0 12px;
+.footer-distributed .footer-links {
+  color: var(--light);
+  margin: 0 0 12px;
 }
 
-.footer-distributed .footer-links a{
-	display:inline-block;
-	line-height: 1.8;
-	text-decoration: none;
-	color:  inherit;
+.footer-distributed .footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
 }
 
-.footer-distributed .footer-company-name{
-	color:  var(--light);
+.footer-distributed .footer-company-name {
+  color: var(--light);
   filter: brightness(85%);
-	font-size: 14px;
-	font-weight: normal;
-	margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
 }
 
 /* Footer Center */
-.footer-distributed .footer-center{
-	width: 30%;
+.footer-distributed .footer-center {
+  width: 30%;
 }
 
 /* Footer Right */
-.footer-distributed .footer-right{
-	width: 30%;
+.footer-distributed .footer-right {
+  width: 30%;
 }
 
-.footer-distributed .footer-company-about{
-	line-height: 20px;
-	color:  var(--light);
-	font-size: 13px;
-	font-weight: normal;
-	margin: 0;
+.footer-distributed .footer-company-about {
+  line-height: 20px;
+  color: var(--light);
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
 }
 
-.footer-distributed .footer-company-about p{
-  color:  var(--light);
+.footer-distributed .footer-company-about p {
+  color: var(--light);
   filter: brightness(85%);
 }
 
-.footer-distributed .footer-company-about span{
-	display: block;
-	color:  var(--light);
-	font-size: 18px;
-	font-weight: bold;
-	margin-bottom: 20px;
+.footer-distributed .footer-company-about span {
+  display: block;
+  color: var(--light);
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.footer-distributed .footer-icons{
-	margin-top: 25px;
+.footer-distributed .footer-icons {
+  margin-top: 25px;
 }
 
-.footer-distributed .footer-icons a{
-	display: inline-block;
-	width: 35px;
-	height: 35px;
-	cursor: pointer;
-	background-color: var(--light);
+.footer-distributed .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: var(--light);
   filter: brightness(65%);
-	border-radius: 2px;
+  border-radius: 2px;
 
-	font-size: 20px;
-	color: #ffffff;
-	text-align: center;
-	line-height: 35px;
-	margin-right: 3px;
-	margin-bottom: 5px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 3px;
+  margin-bottom: 5px;
 }
 
 /* form */
@@ -216,7 +217,7 @@ color: inherit;
   height: 360px;
   object-fit: cover;
   border-radius: 2%;
-  margin: 0 1rem;
+  margin: 0 auto;
   transition: all .3s;
 }
 
@@ -316,6 +317,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 /* .photo {
   transition: all .3s;
 } */
@@ -338,7 +340,7 @@ ul {
   color: var(--light);
   font-size: 1rem;
   font-weight: 400;
-  transition: all .1s ease-in-out ;
+  transition: all .1s ease-in-out;
   border-radius: 4px;
   margin: 0 0 1rem 0;
 }
@@ -370,20 +372,23 @@ ul {
   left: -0.29rem;
 }
 
-.login-form, .signUp-form {
+.login-form,
+.signUp-form {
   margin: 4% auto 5rem auto;
   width: 80%;
   max-width: 35rem;
   min-height: 57vh;
 }
 
-.login-form label, .signUp-form label {
+.login-form label,
+.signUp-form label {
   text-align: left;
   margin-left: 1rem;
   display: block;
 }
 
-.login-form > h2, .signUp-form>h2 {
+.login-form>h2,
+.signUp-form>h2 {
   color: var(--mid);
   padding-bottom: 1rem;
 }
@@ -429,7 +434,7 @@ ul {
   border-color: var(--input-focus);
 }
 
-.button-container input{
+.button-container input {
   cursor: pointer;
   background: var(--mid);
   width: 100%;
@@ -439,7 +444,7 @@ ul {
   font-size: 1rem;
   font-weight: 400;
   margin-top: 1rem;
-  transition: all .1s ease-in-out ;
+  transition: all .1s ease-in-out;
   border-radius: 3px;
   height: 2.5rem;
 }
@@ -465,7 +470,7 @@ ul {
   font-size: 1rem;
   font-weight: 400;
   margin: 1rem 0 1rem 0;
-  transition: all .1s ease-in-out ;
+  transition: all .1s ease-in-out;
   border-radius: 4px;
   box-shadow: var(--light-shadow)
 }
@@ -547,7 +552,8 @@ table {
   margin: 0.5rem;
 }
 
-.library-list-item p, .library-list-item h3 {
+.library-list-item p,
+.library-list-item h3 {
   text-align: left;
   color: var(--light);
   line-height: 1rem;
@@ -595,11 +601,57 @@ table {
 }
 
 .bottom-spacer {
-  margin-bottom: 3rem;;
+  margin-bottom: 3rem;
+  ;
 }
 
 .mostFrequentlyVisitedLibrary {
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap
+}
+
+.mostFrequentlyVisitedLibrary a {
+  margin: 0 auto;
+}
+
+/* card */
+.card {
+  /* Add shadows to create the "card" effect */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: var(--card-shadow);
+  transition: 0.3s;
+  margin: .5rem;
+  border-radius: 3%;
+  flex-direction: row;
+  width: 20rem;
+}
+
+.card .card_image {
+  width: 100%;
+  min-height: 15rem;
+  max-height: 15rem;
+  object-fit: cover;
+  border-top-left-radius: 3%;
+  border-top-right-radius: 3%;
+}
+
+ .no-image {
+  filter: blur(.1rem);
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: var(--card-shadow);
+}
+
+/* Add some padding inside the card container */
+.text-container {
+  padding: .2rem .16rem;
+}
+
+.text-container p{
+  text-align: right;
 }
 
 /* FAQ */
@@ -607,7 +659,8 @@ table {
   margin: 2rem 10% 0 10%;
 }
 
-.faq h3, .faq ul {
+.faq h3,
+.faq ul {
   text-align: left;
   max-width: 60rem;
 }
@@ -646,15 +699,16 @@ table {
 }
 
 @media screen and (max-width: 800px) {
+
   /* footer */
   .footer-distributed .footer-left,
-	.footer-distributed .footer-center,
-	.footer-distributed .footer-right{
-		display: block;
-		width: 100%;
-		margin-bottom: 40px;
-		text-align: center;
-	}
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
 
   .footer-distributed .footer-left h3 {
     text-align: center;
@@ -682,6 +736,7 @@ table {
   .library-detail-image {
     width: 90%;
     height: 60%;
+    min-height: 14rem;
   }
 
   .library-detail-visit {
