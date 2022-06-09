@@ -586,6 +586,10 @@ table {
   line-height: 1;
 }
 
+.library-detail-visit p:last-child {
+  margin-bottom: 1rem;
+}
+
 .library-list-item__details--bottom {
   justify-content: flex-end;
 }
