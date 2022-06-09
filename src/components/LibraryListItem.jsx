@@ -5,18 +5,13 @@ import { formatDateFromSQL } from '../helpers/dateHelpers';
 const LibraryListItem = (props) => {
   return (
     <Link to={`/library/${props.id}`}>
-      <div className='library-list-item'>
-        <div className="library-list-item__image">
-          <img src={props.imageUrl} alt='little library image'/>
-        </div>
-        <div className="library-list-item__details">
-          <div className="library-list-item__details--top">
-            <h3>{props.address}</h3>
-          </div>
-          <div className="library-list-item__details--bottom">
-            <p>{props.count} visits</p>
-            {props.lastVisited && <p>Last visit: {formatDateFromSQL(props.lastVisited)} </p>}
-          </div>
+      <div class="card">
+        {props.imageUrl && <img className="card_image" src={props.imageUrl} alt='little library image' />}
+        {!props.imageUrl && <img className="card_image no-image" src='https://firebasestorage.googleapis.com/v0/b/little-libraries-ea3cb.appspot.com/o/images%2F1.jpg?alt=media&token=008505ad-0024-420c-888f-9f8b8f707efa' alt='little library image' />}
+        <div class="text-container">
+          <h4><b>{props.address}</b></h4>
+          <p>{props.count} visits</p>
+          {props.lastVisited && <p>Last visit: {formatDateFromSQL(props.lastVisited)} </p>}
         </div>
       </div>
     </Link>
