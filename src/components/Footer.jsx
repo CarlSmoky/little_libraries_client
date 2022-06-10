@@ -74,19 +74,19 @@ const Footer = (props) => {
           </div>
         <div class="footer-icons">
           <a href="https://www.twitter.com">
-            <i class="fab fa-facebook"></i>
+            <i className="fab fa-facebook"></i>
           </a>
           <a href="https://www.twitter.com">
-              <i class="fab fa-twitter"></i>
+              <i className="fab fa-twitter"></i>
             </a>
             <a href="https://www.twitter.com">
-              <i class="fab fa-behance"></i>
+              <i className="fab fa-behance"></i>
             </a>
             <a href="https://www.twitter.com">
-              <i class="fab fa-linkedin"></i>
+              <i className="fab fa-linkedin"></i>
             </a>
             <a href="https://www.twitter.com">
-              <i class="fab fa-sketch"></i>
+              <i className="fab fa-sketch"></i>
             </a>
         </div>
       </div>
