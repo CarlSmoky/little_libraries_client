@@ -652,7 +652,9 @@ table {
 
 .text-container p{
   text-align: right;
+  margin-right: .5rem;
 }
+
 
 /* FAQ */
 .faq {
