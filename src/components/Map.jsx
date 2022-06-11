@@ -6,8 +6,6 @@ import { formatRelative } from "date-fns";
 import Search from './Search';
 import Locate from './Locate';
 import axios from 'axios';
-import firebaseApp from './../Firebase.js'; // temp, probably
-import { getStorage, ref, getDownloadURL } from "firebase/storage"; // temp
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { markerContext } from '../providers/MarkerProvider';
@@ -102,10 +100,6 @@ const Map = ({ id, showSearch, mapStyle }) => {
 
   // todo: move to helper file
   const hasCloseNeighbour = (existingMarkers, newMarker) => {
-    // const threshold = 0.00001 // false for here
-    // const threshold = 0.00005 // false
-    // const threshold = 0.00008 // false
-    // const threshold = 0.0001  // true for here
     const threshold = 0.00008  //
     const closeLat = existingMarkers.filter(m => Math.abs(newMarker.lat - m.lat) < threshold);
     const closeLatAndLong = closeLat.filter(m => Math.abs(newMarker.lng - m.lng) < threshold);
@@ -132,23 +126,6 @@ const Map = ({ id, showSearch, mapStyle }) => {
     ]);
     setSelected(newMarker);
   }
-
-  const addImageURL = (id, imageURL) => {
-    const endpoints = {
-      "LOGIN": "api/libraries/imageURL"
-    }
-    console.log("in addImageURL", imageURL);
-    axios.post(endpoints.LOGIN, {id, imageURL})
-      .then(response => {
-        // console.log(response.data);
-        // navigate('/')
-      })
-      .catch(err => {
-        const { message } = err.response.data;
-        console.log(message);
-      });
-  }
-
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
@@ -177,22 +154,8 @@ const Map = ({ id, showSearch, mapStyle }) => {
             }}
             onClick={() => {
               setSelected(marker);
-              // console.log("MAP: marker object", marker);
-              const storage = getStorage();
               if (marker.imageURL) {
                 setSelectedImageUrl(marker.imageURL);
-                // console.log("MAP: we already have the url");
-              } else {
-                // TODO: refactor this logic so it can be used directly when uploading a new image
-                // getDownloadURL and addImageURL need to be available elsewhere
-                getDownloadURL(ref(storage, `images/${marker.id}.jpg`))
-                .then(url => {
-                  console.log("MAP: we had to fetch the URL");
-                  console.log("fetched url", url);
-                  setSelectedImageUrl(url);
-                  addImageURL(marker.id, url);
-                  // TODO: error handling when we figure out how!
-                })
               }
             }}
           />
