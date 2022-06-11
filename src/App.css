@@ -418,20 +418,19 @@ ul {
   padding: 10px 15px;
   border: 1px solid #ccc;
   color: #ccc;
-  box-sizing: border-box;
   font-size: 1rem;
   transition: var(--transition);
   border-radius: 4px;
   margin-bottom: 0.6rem;
 }
 
+.input-container input:focus {
+  border-color: var(--input-focus);
+}
+
 .link_to_login {
   margin-top: 1rem;
   padding-bottom: 2rem;
-}
-
-.input-container input:focus {
-  border-color: var(--input-focus);
 }
 
 .button-container input {
@@ -629,14 +628,14 @@ table {
 
 .card .card_image {
   width: 100%;
-  min-height: 15rem;
+  /* min-height: 15rem; */
   max-height: 15rem;
   object-fit: cover;
   border-top-left-radius: 3%;
   border-top-right-radius: 3%;
 }
 
- .no-image {
+.no-image {
   filter: blur(.1rem);
 }
 
@@ -650,7 +649,7 @@ table {
   padding: .2rem .16rem;
 }
 
-.text-container p{
+.text-container p {
   text-align: right;
   margin-right: .5rem;
 }
@@ -685,7 +684,28 @@ table {
 /* User page */
 .page-wrapper {
   min-height: 60vh;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
+  margin: 1rem;
+  position: relative;
+}
+
+/* search-library */
+.search-input-container input{
+  outline: none;
+  display: block;
+  width: 100%;
+  max-width: 30rem;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  color: #ccc;
+  font-size: 1rem;
+  transition: var(--transition);
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.search-input-container input:focus {
+  border-color: var(--input-focus);
 }
 
 /* full screen */
@@ -748,5 +768,25 @@ table {
   #navbar-title {
     font-size: 12pt;
   }
+
+  /* card */
+.card {
+  /* Add shadows to create the "card" effect */ 
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: var(--card-shadow);
+  transition: 0.3s;
+  margin: .5rem 0 ;
+  border-radius: 3%;
+  flex-direction: row;
+  width: 100%;
+}
+
+.card .card_image {
+  max-height: none;
+}
+
+.search-input-container input {
+  margin: .5rem 0;
+}
 
 }
