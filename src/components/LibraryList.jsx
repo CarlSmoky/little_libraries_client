@@ -6,6 +6,8 @@ const LibraryList = ({ endpointKey }) => {
   const [displayedLibraries, setDisplayedLibraries] = useState([]);
   const mostFrequentlyVisited = useRef();
   const displayCount = useRef(10);
+  const [query, setQuery] = useState("");
+
 
   useEffect(() => {
     displayCount.current = sessionStorage.getItem("userpage-display-items") || 10;
@@ -31,7 +33,7 @@ const LibraryList = ({ endpointKey }) => {
   const pressedShowAll = () => {
     displayCount.current += 200;
     sessionStorage.setItem("userpage-display-items", displayCount.current);
-    setDisplayedLibraries(mostFrequentlyVisited.current.slice(0,displayCount.current));
+    setDisplayedLibraries(mostFrequentlyVisited.current.slice(0, displayCount.current));
   }
 
   const topLibraries = displayedLibraries.map(library => {
@@ -48,18 +50,41 @@ const LibraryList = ({ endpointKey }) => {
   });
 
   const displayShowMoreButton = () => {
-    return mostFrequentlyVisited.current && displayedLibraries.length < mostFrequentlyVisited.current.length;
+    return mostFrequentlyVisited.current && displayCount.current <= mostFrequentlyVisited.current.length;
   }
 
-  return (
-    <div className="libraryListForUser">
-      <div className="mostFrequentlyVisitedLibrary">
-        { topLibraries }
-      </div>
-      { displayShowMoreButton() &&
-        <button className="button-basic bottom-margin button-narrow" onClick={pressedShowAll}>Show All</button> || <div className='bottom-spacer'></div>}
-    </div>
-  )
-}
+  const applyQuery = (searchTerm) => {
+    setQuery(searchTerm);
+      const filteredLibrary = mostFrequentlyVisited.current.filter(item => {
+        return (
+          item.address.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+        )
+      });
+      setDisplayedLibraries(filteredLibrary);
+  };
 
-export default LibraryList;
+    return (
+      <>
+        <div className="libraryListForUser">
+        <div className="search-input-container">
+          <input
+            type="text"
+            name="query"
+            id="query"
+            value={query}
+            onChange={(event) => { applyQuery(event.target.value) }}
+            className="search-library"
+            placeholder="Search"
+          />
+          </div>
+          <div className="mostFrequentlyVisitedLibrary">
+            {topLibraries}
+          </div>
+          {displayShowMoreButton() &&
+            <button className="button-basic bottom-margin button-narrow" onClick={pressedShowAll}>Show All</button> || <div className='bottom-spacer'></div>}
+        </div>
+      </>
+    )
+  }
+
+  export default LibraryList;
