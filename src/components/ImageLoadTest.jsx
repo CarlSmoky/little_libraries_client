@@ -14,28 +14,11 @@ export default function ImageLoadTest({libraryId }) {
   const storage = getStorage(firebaseApp);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const addVisitCount = () => {
-    const endpoints = {
-      "RECORD_VISITS": `api/visits/`
-    }
-
-    axios.post(endpoints.RECORD_VISITS, { libId }, {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      }
-    })
-      .then(response => {
-        const { time, count, countByUser } = response.data;
-        console.log("logged count");
-      });
-  }
-
   const uploadImageToFirebase = () => {
     resizeFile(selectedImage)
       .then(resized => {
         const newFile = dataURIToBlob(resized);
         uploadBytes(storageRef, newFile).then((snapshot) => {
-          addVisitCount();
           fetchAndStoreImageURL(libId, () => { navigate(`/library/${libId}`) });
         });
       })
