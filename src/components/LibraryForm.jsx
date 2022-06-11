@@ -16,6 +16,10 @@ const LibraryForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const [libraryId, setLibraryId] = useState('');
+  const endpoints = {
+    "LIBRARY": "api/libraries",
+    "RECORD_VISITS": `api/visits`
+  }
 
   useEffect(() => {
     setFormData({ ...formData, address: typedAddress || "" });
@@ -32,9 +36,6 @@ const LibraryForm = () => {
   };
 
   const save = (formData) => {
-    const endpoints = {
-      "LIBRARY": "api/libraries"
-    }
 
     axios.post(endpoints.LIBRARY, formData, {
       headers: {
@@ -48,12 +49,30 @@ const LibraryForm = () => {
           fetchMarkers();
           setErrorMessage('');
           setLibraryId(response.data.library.id);
+          addVisitCount(response.data.library.id);
         }
       })
       .catch(err => {
         console.log(err);
       });
   }
+
+  const addVisitCount = (libraryId ) => {
+    axios.post(endpoints.RECORD_VISITS, { libraryId  }, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      }
+    })
+      .then(response => {
+        const { time, count, countByUser } = response.data;
+        console.log("logged count", response.data );
+      })
+      .catch(err => {
+        const { message } = err.response.data;
+        console.log(message);
+      })
+  }
+
   const token = localStorage.getItem("token");
 
   return (
@@ -80,7 +99,7 @@ const LibraryForm = () => {
           </div>}
         </>
       }
-      
+
       {!token &&
         <>
           <p>To resister a library, you need to log in.</p>
