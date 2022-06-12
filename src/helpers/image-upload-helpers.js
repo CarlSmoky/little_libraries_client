@@ -9,9 +9,7 @@ const addImageURL = (id, imageURL, navigationAfter) => {
   console.log("in addImageURL", imageURL);
   axios.post(endpoints.STORE_IMAGE_URL, {id, imageURL})
     .then(response => {
-      if (navigationAfter) {
-        navigationAfter();
-      }
+      navigationAfter();
     })
     .catch(err => {
       const { message } = err.response.data;
