@@ -6,14 +6,17 @@ import { useNavigate, useLocation  } from 'react-router-dom';
 import { fetchAndStoreImageURL} from '../helpers/image-upload-helpers.js';
 import axios from 'axios';
 
-export default function ImageLoadTest({libraryId }) {
+export default function ImageLoadTest({ libraryId }) {
+
   const navigate = useNavigate();
   const location = useLocation();
   const libId = libraryId ?? location.state.libraryId;
   // Get a reference to the storage service, which is used to create references in your storage bucket
   const storage = getStorage(firebaseApp);
   const [selectedImage, setSelectedImage] = useState(null);
+  const storageRef = ref(storage, `images/${libId}.jpg`);
 
+  console.log("in imageload test", libId);
   const uploadImageToFirebase = () => {
     resizeFile(selectedImage)
       .then(resized => {
@@ -27,8 +30,6 @@ export default function ImageLoadTest({libraryId }) {
       })
   }
 
-  // this creates the firebase ref; use uploadBytes to connect the file to the ref
-  const storageRef = ref(storage, `images/${libId}.jpg`);
   return (
     <div>
       {selectedImage && (

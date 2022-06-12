@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import { getStorage, ref, getDownloadURL } from "firebase/storage"; // temp
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { formatDateFromSQL } from '../helpers/dateHelpers';
+import ImageLoadTest from './ImageLoadTest';
 import axios from 'axios';
 
 
 const LibraryDetail = ({ libraryInfo }) => {
   const [selectedImageUrl, setSelectedImageUrl] = useState();
-  const storage = getStorage();
+  const navigate = useNavigate();
   const libraryId = libraryInfo.id;
   const [count, setCount] = useState("");
   const [countByUser, setCountByUser] = useState("");
   const [lastVisitByUser, setLastVisitByUser] = useState("");
+  const [showImageUpload, setShowImageUpload] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const LibraryDetail = ({ libraryInfo }) => {
       setSelectedImageUrl(libraryInfo.image_url)
     }
   },[libraryInfo]);
-  
+
   useEffect(() => {
     if (!token) {
       //When user not logged in
@@ -48,9 +49,9 @@ const LibraryDetail = ({ libraryInfo }) => {
           setLastVisitByUser(lastVisitByUser);
         });
     }
-  }, [lastVisitByUser, libraryId, token])
+  }, [lastVisitByUser, libraryId, token, selectedImageUrl])
 
-  const handleClick = () => {
+  const handleClickRecordVisit = () => {
     const endpoints = {
       "RECORD_VISITS": `api/visits/`
     }
@@ -66,7 +67,10 @@ const LibraryDetail = ({ libraryInfo }) => {
         setCountByUser(countByUser);
         setLastVisitByUser(lastVisitByUser);
       });
+  }
 
+  const handleClickEdit = () => {
+    navigate("/upload", { state: { libraryId } })
   }
 
   function formatCountableNoun(noun, count) {
@@ -74,14 +78,14 @@ const LibraryDetail = ({ libraryInfo }) => {
   }
 
   const imageUploadLink = {
-    pathname: "/upload", 
+    pathname: "/upload",
     libraryId
   }
 
   return (
     <div className="library-detail">
       <h4 className="library-detail-address">{libraryInfo.address}</h4>
-      {selectedImageUrl && <img className="library-detail-image" src={selectedImageUrl} alt="photo of library" />}
+      {selectedImageUrl && !showImageUpload && <img className="library-detail-image" src={selectedImageUrl} alt="photo of library" />}
       {token && !selectedImageUrl && <p className="library-detail-image">No photos!</p>}
       {!token && !selectedImageUrl && <p className="library-detail-image">No photos!</p>}
       <div className="library-detail-visit">
@@ -92,7 +96,9 @@ const LibraryDetail = ({ libraryInfo }) => {
 
       </div>
 
-      {token && <button className="button-small" onClick={handleClick}>Record Visit</button>}
+      {token && <button className="button-small" onClick={handleClickRecordVisit}>Record Visit</button>}
+      <br/>
+      {token && <button className="button-small" onClick={handleClickEdit }>Edit Image</button>}
 
       {!token && !selectedImageUrl && <Link to="/login"> Log In</Link>}
       {token && !selectedImageUrl && <Link to={imageUploadLink} state={{ libraryId }}>Upload image</Link>}
